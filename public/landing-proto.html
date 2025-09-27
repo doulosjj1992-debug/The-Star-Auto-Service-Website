@@ -1,10 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="preload" as="image" href="/assets/hero.jpg" imagesrcset="/assets/hero.jpg 1x" fetchpriority="high">
+
+    <link rel="canonical" href="https://YOUR-DOMAIN.com/">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Star Auto Service - Premier Auto Repair in Richardson, TX</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>The Star Auto Service – Auto Repair in Richardson, TX</title>
+<meta name="description" content="ASE-certified auto repair in Richardson, TX. Battery service, oil changes, electrical diagnostics, engine replacement, tire rotation, and HVAC. Call (972) 231-2886.">
+<link rel="canonical" href="https://example.com/">
+<meta name="robots" content="index,follow">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Star Auto Service – Auto Repair in Richardson, TX">
+<meta property="og:description" content="Expert auto repair with integrity. Bilingual service. Call (972) 231-2886.">
+<meta property="og:url" content="https://example.com/">
+<meta property="og:image" content="/assets/og-image.jpg">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Star Auto Service – Auto Repair in Richardson, TX">
+<meta name="twitter:description" content="Expert auto repair with integrity. Bilingual service.">
+<meta name="twitter:image" content="/assets/og-image.jpg">
+<meta property="og:site_name" content="The Star Auto Service">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Star Auto Service – Richardson auto repair">
+<meta name="twitter:image:alt" content="The Star Auto Service – Richardson auto repair">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "AutoRepair",
+      "@id": "https://YOURDOMAIN.com/#business",
+      "name": "The Star Auto Service",
+      "url": "https://YOURDOMAIN.com/",
+      "image": ["https://YOURDOMAIN.com/assets/og-image.jpg"],
+      "telephone": "+1-972-231-2886",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "900 E Belt Line Rd",
+        "addressLocality": "Richardson",
+        "addressRegion": "TX",
+        "postalCode": "75081",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 32.9274,
+        "longitude": -96.7467
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+          "opens": "08:00",
+          "closes": "18:30"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "08:00",
+          "closes": "16:00"
+        }
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": 4.9,
+        "reviewCount": 200
+      },
+      "sameAs": [
+        "https://www.facebook.com/yourpage",
+        "https://www.instagram.com/yourpage",
+        "https://maps.google.com/?cid=YOUR_GMB_CID"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "url": "https://YOURDOMAIN.com/",
+      "name": "The Star Auto Service",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://YOURDOMAIN.com/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+  ]
+}
+</script>
+
+
+
+
+
     <style>
+        /* Screen-reader only helper */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
         * {
             margin: 0;
             padding: 0;
@@ -734,6 +845,40 @@
                 opacity: 1;
             }
         }
+/* Featured image section */
+.feature-image {
+  max-width: 1200px;
+  margin: 2rem auto 3rem;
+  padding: 0 1rem;
+  opacity: 0;                     /* hidden by default; JS adds .in */
+  transform: translateY(50px);    /* start slightly shifted */
+  transition: opacity .8s cubic-bezier(.68,-.55,.265,1.55),
+              transform .8s cubic-bezier(.68,-.55,.265,1.55);
+}
+
+.feature-image.in {
+  opacity: 1;
+  transform: none;
+}
+
+.feature-image__inner {
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,.25);
+  background: #0b1d4a;            /* fallback while image loads */
+}
+
+.feature-image__img {
+  display: block;
+  width: 100%;
+  height: clamp(220px, 45vh, 520px);  /* responsive height */
+  object-fit: cover;
+}
+
+/* Small screens: reduce outer margins a bit */
+@media (max-width: 768px) {
+  .feature-image { margin: 1rem auto 2rem; }
+}
 
         /* Ultra Smooth Reviews Section */
         .reviews {
@@ -824,7 +969,7 @@
         }
 
         .review-card::before {
-            content: '★★★★★';
+            content: '';
             position: absolute;
             top: 20px;
             right: 30px;
@@ -862,7 +1007,7 @@
         }
 
         .review-text::before {
-            content: '"';
+            content: '';
             position: absolute;
             left: 0;
             top: -10px;
@@ -879,6 +1024,20 @@
             letter-spacing: 1px;
             text-transform: uppercase;
         }
+        .review-stars {
+            display: flex;
+  justify-content: flex-end;
+  font-size: 1.6rem;
+  letter-spacing: .2rem;
+  color: var(--accent-yellow);
+  text-shadow: 0 0 20px rgba(251, 191, 36, 0.6);
+  margin-bottom: 1rem;
+  line-height: 1;
+}
+
+@media (max-width: 768px) {
+  .review-stars { font-size: 1.2rem; letter-spacing: .15rem; }
+}
 
         /* Stunning Location Section */
         .location {
@@ -1744,24 +1903,181 @@
                 width: 100px;
                 height: 40px;
             }
+            /* Visually hide, but make focusable for keyboard users */
+            /* A11y: skip link (hidden unless focused) */
+            .sr-only-focusable {
+              position: absolute;
+              left: -9999px;
+              top: auto;
+              width: 1px;
+              height: 1px;
+              overflow: hidden;
+            }
+
+            .sr-only-focusable:focus {
+              left: 8px;
+              top: 8px;
+              width: auto;
+              height: auto;
+              padding: 8px 12px;
+              background: #ffffff;
+              color: #000;
+              border-radius: 6px;
+              z-index: 9999;
+              outline: 3px solid var(--accent-yellow);
+              box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+            }
+
         }
+        .logo { display: inline-flex; align-items: center; gap: .5rem; }
+.logo img { height: 36px; width: auto; filter: drop-shadow(0 0 12px rgba(251,191,36,.35)); }
+
+/* Skip link (keyboard accessible) */
+.skip-link {
+  position: absolute;
+  left: 8px;
+  top: -999px;
+  background: #1e3a8a;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  z-index: 10000;
+}
+.skip-link:focus { top: 8px; }
+
+/* Featured image between Hero and Mission */
+.feature-image {
+  max-width: 1400px;
+  margin: 60px auto 40px;
+  padding: 0 2rem;
+  /* hidden state for scroll reveal */
+  opacity: 0;
+  transform: translateY(30px) scale(0.98);
+  transition: transform 700ms cubic-bezier(0.68,-0.55,0.265,1.55),
+              opacity 700ms cubic-bezier(0.68,-0.55,0.265,1.55);
+}
+
+.feature-image.in {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.feature-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 30px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+}
+
+@media (max-width: 768px) {
+  .feature-image { margin: 40px auto 30px; padding: 0 1rem; }
+  .feature-image img { border-radius: 20px; }
+}
+
+
+/* When revealed */
+.feature-image.in img {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+/* Small screens */
+@media (max-width: 768px) {
+  .feature-image { margin: 40px auto 30px; padding: 0 1rem; }
+  .feature-image img { border-radius: 20px; }
+}
+/* ===== Mobile-first tuning ===== */
+
+/* Fluid type so headings shrink on small screens */
+.hero-title { font-size: clamp(1.6rem, 5.5vw, 3rem); line-height: 1.15; }
+.hero-subtitle { font-size: clamp(1rem, 3.8vw, 1.25rem); }
+
+/* Buttons and links: comfortable tap targets */
+a, button { min-height: 44px; min-width: 44px; }
+
+/* Keep the new featured image tidy on phones */
+.feature-image { margin: 1rem auto 1.25rem; }
+.feature-image__img {
+  height: clamp(180px, 42vh, 420px);
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* Reviews: single column on phones, tighter spacing */
+.reviews-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+.review-card { padding: 1rem 1.1rem; }
+.review-text { font-size: 1rem; }
+.review-author { font-size: .95rem; }
+.review-stars { font-size: 1.2rem; letter-spacing: .15rem; }
+
+/* Mission/sections: reduce big paddings on mobile */
+.mission-container,
+.location-container,
+.hours-container { padding: 1.25rem 1rem; }
+
+/* Logo + nav: keep it from squishing */
+.logo { max-height: 36px; }
+
+/* Hide heavy shadows/glows on small screens to prevent “banding” */
+.hero-title,
+.call-button,
+.review-card { filter: none; text-shadow: none; }
+
+/* Main mobile breakpoint */
+@media (max-width: 768px) {
+  /* Stack any two/three-column blocks into one column */
+  .services-grid, .value-grid, .location-grid { grid-template-columns: 1fr !important; }
+
+  /* Tighten the hero */
+  .hero { padding: 4.5rem 1rem 2rem; }
+  .call-button { font-size: 1rem; padding: .9rem 1.1rem; }
+
+  /* Reviews stars a touch smaller */
+  .review-stars { font-size: 1.1rem; letter-spacing: .12rem; }
+
+  /* Make footer/menu easy to tap */
+  nav .nav-links li { margin: 0 .4rem; }
+}
+
+/* Tiny phones */
+@media (max-width: 480px) {
+  .hero-title { font-size: clamp(1.4rem, 7vw, 2rem); }
+  .call-button { width: 100%; text-align: center; }
+  .review-card { border-radius: 16px; }
+}
+
+
     </style>
 </head>
+
 <body>
+    <a href="#main" class="skip-link">Skip to main content</a>
+
+    <a href="#main" class="sr-only-focusable">Skip to content</a>
+
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <a href="#home" class="logo">
-  <img src="/assets/logo-star.svg" alt="The Star Auto Service" style="height:36px; vertical-align:middle;">
-</a>
+  <a href="#home" class="logo" aria-label="The Star Auto Service — Home">
+    <img src="/assets/logo-star.svg"
+         alt="The Star Auto Service logo"
+         height="36"
+         decoding="async"
+         loading="lazy">
+  </a>
 
-            <ul class="nav-links">
-                <li><a href="#home" onclick="showPage('home')">Home</a></li>
-                <li><a href="#services" onclick="showPage('services')">Services</a></li>
-                <li><a href="#about" onclick="showPage('about')">About</a></li>
-            </ul>
-        </div>
+  <ul class="nav-links">
+    <li><a href="#home" onclick="showPage('home')">Home</a></li>
+    <li><a href="#services" onclick="showPage('services')">Services</a></li>
+    <li><a href="#about" onclick="showPage('about')">About</a></li>
+  </ul>
+</div>
+
     </nav>
+    <main id="main">
+
 
     <!-- Floating Contact Button -->
     <div class="floating-contact" onclick="openContactModal()">
@@ -1810,10 +2126,30 @@
             
             <div class="hero-content">
                 <h1 class="hero-title">The Star Auto Service</h1>
-                <p class="hero-subtitle">Excellence in Every Mile</p>
+                <p class="hero-subtitle">Your Neighborhood Mechanic Shop</p>
                 <a href="tel:9722312886" class="phone-number">📞 (972) 231-2886</a>
             </div>
         </section>
+
+<!-- Featured Image (between Hero and Our Mission) -->
+<section class="feature-image" aria-label="Shop exterior">
+  <div class="feature-image__inner">
+    <img
+      src="/assets/mission-banner-1920.jpg"
+      srcset="/assets/mission-banner-1280.jpg 1280w,
+              /assets/mission-banner-1920.jpg 1920w,
+              /assets/mission-banner-2560.jpg 2560w"
+      sizes="(max-width: 768px) 100vw, 1200px"
+      alt="The Star Auto Service exterior and forecourt"
+      class="feature-image__img"
+      loading="lazy"
+      decoding="async"
+      width="1920"
+      height="1080"
+    />
+  </div>
+</section>
+
 
         <!-- Mission Section -->
         <section class="mission">
@@ -1831,25 +2167,40 @@
                 <h2>What Our Customers Say</h2>
                 <div class="reviews-grid">
                     <div class="review-card">
+                        <div class="review-stars" aria-hidden="true">★★★★★</div>
+                        <span class="sr-only">5 out of 5 stars</span>
+
+
                         <p class="review-text">
                             Quickly diagnosed and repaired my vehicle for a very reasonable price. Additionally, they aired my tires up without me asking them to do so. That may not be a big deal to some, but it meant a lot to me and demonstrated their concern for details. I will definitely take my vehicle there again.
                         </p>
                         <p class="review-author">- Trish Hammons</p>
                     </div>
                     <div class="review-card">
+                        <div class="review-stars" aria-hidden="true">★★★★★</div>
+                        <span class="sr-only">5 out of 5 stars</span>
+
+
                         <p class="review-text">
                             This company has helped maintain my two different cars for 6 years. Even would take me home while car repairs happened and returned me to the service center to pick up my car! Family values. Honest assessment. Good price. Quality service. Never a complaint re work done. Wonderful people. Thanks!!!!
                         </p>
                         <p class="review-author">- Beth Nystrom</p>
                     </div>
                     <div class="review-card">
+                        <div class="review-stars" aria-hidden="true">★★★★★</div>
+                        <span class="sr-only">5 out of 5 stars</span>
+
+
                         <p class="review-text">
                             I have found my car's new mechanics. They fixed the mess that another mechanic made. I'm going to go back get the air conditioning worked on. And they're even going to do a little bit of body work for me. And all with a song in the voice and a smile on their face. See these guys trust these guys. I love these guys!!
                         </p>
                         <p class="review-author">- Laura Dorsett</p>
+                        
                     </div>
                 </div>
+                
             </div>
+            
         </section>
 
         <!-- Location Section -->
@@ -2036,6 +2387,7 @@
             </div>
         </section>
     </div>
+</main>
 
     <!-- Footer -->
     <footer>
@@ -2135,60 +2487,70 @@
             }
         }
 
-        // Enhanced scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
+        // Enhanced scroll animations — class-based
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -100px 0px'
+};
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0) rotate(0)';
-                    }, index * 100);
-                }
-            });
-        }, observerOptions);
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');   // reveal via CSS class
+      observer.unobserve(entry.target);
+    }
+  });
+}, observerOptions);
 
-        // Observe all animated elements
-        document.addEventListener('DOMContentLoaded', () => {
-            const animatedElements = document.querySelectorAll('.review-card, .service-card, .value-card, .address-block, .hours-block');
-            animatedElements.forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(50px) rotate(-2deg)';
-                el.style.transition = 'all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
-                observer.observe(el);
-            });
-        });
+document.addEventListener('DOMContentLoaded', () => {
+  // include the featured image wrapper
+  const animatedElements = document.querySelectorAll(
+    '.review-card, .service-card, .value-card, .address-block, .hours-block, .feature-image'
+  );
 
-        // Parallax effects
-        let ticking = false;
-        function updateParallax() {
-            const scrolled = window.pageYOffset;
-            
-            // Hero parallax
-            const racingContainer = document.querySelector('.racing-container');
-            if (racingContainer) {
-                racingContainer.style.transform = `translateY(${scrolled * 0.5}px)`;
-            }
-            
-            // Mountain parallax
-            const mountain = document.querySelector('.mountain-road');
-            if (mountain) {
-                mountain.style.transform = `translateY(${scrolled * 0.3}px)`;
-            }
-            
-            ticking = false;
-        }
+  // start hidden (CSS handles the hidden state)
+  animatedElements.forEach((el) => {
+    el.classList.remove('in'); // ensure hidden state on load
+    observer.observe(el);
+  });
+});
 
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                window.requestAnimationFrame(updateParallax);
-                ticking = true;
-            }
-        });
+
+        
+// Parallax effects — desktop only (>= 768px)
+if (window.matchMedia('(min-width: 768px)').matches) {
+  let ticking = false;
+
+  function updateParallax() {
+    const scrolled =
+      window.pageYOffset || document.documentElement.scrollTop || 0;
+
+    const racingContainer = document.querySelector('.racing-container');
+    if (racingContainer) {
+      racingContainer.style.transform = `translateY(${scrolled * 0.5}px)`;
+    }
+
+    const mountain = document.querySelector('.mountain-road');
+    if (mountain) {
+      mountain.style.transform = `translateY(${scrolled * 0.3}px)`;
+    }
+
+    ticking = false;
+  }
+
+  window.addEventListener(
+    'scroll',
+    () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateParallax);
+        ticking = true;
+      }
+    },
+    { passive: true }
+  );
+}
+
+
 
         // Add dynamic car racing effects
         setInterval(() => {
@@ -2255,6 +2617,16 @@
             }
         `;
         document.head.appendChild(style);
+        
+  function handleHashChange() {
+    const page = (window.location.hash || '#home').slice(1);
+    showPage(page);
+  }
+
+  // Run once on load and whenever the hash changes
+  window.addEventListener('hashchange', handleHashChange);
+  document.addEventListener('DOMContentLoaded', handleHashChange);
+
     </script>
 </body>
 </html>
