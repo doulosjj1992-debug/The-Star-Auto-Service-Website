@@ -1,0 +1,2257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Star Auto Service - Premier Auto Repair in Richardson, TX</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1e3a8a;
+            --accent-yellow: #fbbf24;
+            --dark-grey: #374151;
+            --light-grey: #9ca3af;
+            --black: #000000;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Arial Black', 'Helvetica', sans-serif;
+            background: #000;
+            overflow-x: hidden;
+        }
+
+        /* Stunning Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: linear-gradient(180deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 100%);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1.2rem 2rem;
+            animation: navSlide 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 10px 40px rgba(251, 191, 36, 0.2);
+        }
+
+        @keyframes navSlide {
+            from {
+                transform: translateY(-100%) rotateX(90deg);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0) rotateX(0);
+                opacity: 1;
+            }
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: var(--accent-yellow);
+            font-size: 1.8rem;
+            font-weight: 900;
+            text-decoration: none;
+            text-shadow: 0 0 30px rgba(251, 191, 36, 0.8),
+                         0 0 60px rgba(251, 191, 36, 0.5),
+                         3px 3px 0 var(--primary-blue);
+            animation: logoFlame 2s ease-in-out infinite;
+            letter-spacing: 3px;
+            position: relative;
+        }
+
+        @keyframes logoFlame {
+            0%, 100% {
+                text-shadow: 0 0 30px rgba(251, 191, 36, 0.8),
+                             0 0 60px rgba(251, 191, 36, 0.5),
+                             3px 3px 0 var(--primary-blue);
+                transform: scale(1);
+            }
+            50% {
+                text-shadow: 0 0 50px rgba(251, 191, 36, 1),
+                             0 0 100px rgba(251, 191, 36, 0.8),
+                             3px 3px 0 var(--primary-blue);
+                transform: scale(1.05);
+            }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            position: relative;
+            padding: 5px 10px;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-yellow), var(--primary-blue));
+            transition: width 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-yellow);
+            transform: translateY(-5px) scale(1.1);
+            text-shadow: 0 10px 20px rgba(251, 191, 36, 0.5);
+        }
+
+        .nav-links a:hover::before {
+            width: 100%;
+        }
+
+        /* Ultra Smooth Floating Contact Button */
+        .floating-contact {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-yellow) 50%, var(--primary-blue) 100%);
+            background-size: 200% 200%;
+            color: white;
+            padding: 18px 30px;
+            border-radius: 60px;
+            cursor: pointer;
+            box-shadow: 0 10px 40px rgba(251, 191, 36, 0.5),
+                        0 0 80px rgba(30, 58, 138, 0.5);
+            z-index: 999;
+            font-weight: 900;
+            font-size: 1.1rem;
+            animation: floatButton 3s ease-in-out infinite, gradientMove 3s linear infinite;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            letter-spacing: 1px;
+        }
+
+        @keyframes floatButton {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-10px) rotate(2deg);
+            }
+            75% {
+                transform: translateY(-5px) rotate(-2deg);
+            }
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .floating-contact:hover {
+            transform: translateY(-10px) scale(1.1) rotate(5deg);
+            box-shadow: 0 20px 60px rgba(251, 191, 36, 0.8),
+                        0 0 120px rgba(30, 58, 138, 0.8);
+        }
+
+        /* Stunning Contact Modal */
+        .contact-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(30, 58, 138, 0.95), rgba(0,0,0,0.98));
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-modal.show {
+            display: flex;
+            animation: modalFadeIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                backdrop-filter: blur(0);
+            }
+            to {
+                opacity: 1;
+                backdrop-filter: blur(10px);
+            }
+        }
+
+        .contact-form {
+            background: linear-gradient(135deg, white 0%, #f3f4f6 100%);
+            padding: 3rem;
+            border-radius: 30px;
+            max-width: 500px;
+            width: 90%;
+            animation: formSlideUp 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 30px 100px rgba(251, 191, 36, 0.4),
+                        0 0 200px rgba(30, 58, 138, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-form::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(251, 191, 36, 0.1), transparent);
+            animation: formShine 3s linear infinite;
+        }
+
+        @keyframes formSlideUp {
+            from {
+                transform: translateY(100px) scale(0.8) rotateX(10deg);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0) scale(1) rotateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes formShine {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .contact-form h2 {
+            color: var(--primary-blue);
+            margin-bottom: 2rem;
+            text-align: center;
+            font-size: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            animation: titlePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes titlePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 1.5rem;
+            border: 3px solid transparent;
+            background: white;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: var(--accent-yellow);
+            outline: none;
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(251, 191, 36, 0.3);
+        }
+
+        .contact-form button {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-yellow) 100%);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: 900;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .contact-form button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .contact-form button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(251, 191, 36, 0.5);
+        }
+
+        .contact-form button:hover::before {
+            left: 100%;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 3rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 2001;
+        }
+
+        .close-modal:hover {
+            transform: rotate(180deg) scale(1.2);
+            color: var(--accent-yellow);
+            text-shadow: 0 0 30px rgba(251, 191, 36, 0.8);
+        }
+
+        /* STUNNING Hero Section with Racing Cars */
+        .hero {
+            position: relative;
+            height: 100vh;
+            margin-top: 0;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .racing-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, #0a0e27 0%, #1e3a8a 50%, #000 100%);
+            overflow: hidden;
+        }
+
+        /* Mountain/Hill Background */
+        .mountain-road {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 60%;
+            background: linear-gradient(to top, #222 0%, #444 50%, transparent 100%);
+            clip-path: polygon(0 100%, 0 40%, 15% 35%, 30% 45%, 50% 30%, 70% 42%, 85% 38%, 100% 45%, 100% 100%);
+            z-index: 1;
+        }
+
+        /* Animated Road */
+        .road {
+            position: absolute;
+            bottom: 20%;
+            left: -10%;
+            width: 120%;
+            height: 200px;
+            background: #333;
+            transform: perspective(500px) rotateX(50deg);
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        .road::before {
+            content: '';
+            position: absolute;
+            top: 45%;
+            left: 0;
+            width: 100%;
+            height: 10%;
+            background: repeating-linear-gradient(90deg, 
+                var(--accent-yellow) 0px, 
+                var(--accent-yellow) 50px, 
+                transparent 50px, 
+                transparent 100px);
+            animation: roadMove 1s linear infinite;
+        }
+
+        @keyframes roadMove {
+            from { transform: translateX(0); }
+            to { transform: translateX(-100px); }
+        }
+
+        /* Racing Cars */
+        .car {
+            position: absolute;
+            bottom: 30%;
+            width: 150px;
+            height: 60px;
+            z-index: 3;
+        }
+
+        .car1 {
+            left: 20%;
+            animation: car1Race 4s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+        }
+
+        .car2 {
+            left: 10%;
+            animation: car2Race 4s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+        }
+
+        @keyframes car1Race {
+            0% { transform: translateX(0) translateY(0) scale(0.8); }
+            25% { transform: translateX(100px) translateY(-10px) scale(0.9); }
+            50% { transform: translateX(200px) translateY(10px) scale(1); }
+            75% { transform: translateX(100px) translateY(-5px) scale(0.95); }
+            100% { transform: translateX(0) translateY(0) scale(0.8); }
+        }
+
+        @keyframes car2Race {
+            0% { transform: translateX(0) translateY(0) scale(0.7); }
+            25% { transform: translateX(150px) translateY(5px) scale(0.8); }
+            50% { transform: translateX(250px) translateY(-15px) scale(0.9); }
+            75% { transform: translateX(180px) translateY(10px) scale(0.85); }
+            100% { transform: translateX(0) translateY(0) scale(0.7); }
+        }
+
+        .car-body {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ff0000 0%, #aa0000 100%);
+            border-radius: 20px;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(255,0,0,0.5);
+        }
+
+        .car2 .car-body {
+            background: linear-gradient(135deg, var(--accent-yellow) 0%, #ff8800 100%);
+            box-shadow: 0 10px 40px rgba(251, 191, 36, 0.5);
+        }
+
+        .car-body::before,
+        .car-body::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            width: 35px;
+            height: 35px;
+            background: #222;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            animation: wheelSpin 0.5s linear infinite;
+        }
+
+        .car-body::before { left: 15px; }
+        .car-body::after { right: 15px; }
+
+        @keyframes wheelSpin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Speed Lines */
+        .speed-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .speed-line {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.8), transparent);
+            animation: speedLineMove 1s linear infinite;
+        }
+
+        .speed-line:nth-child(1) { top: 30%; width: 100px; left: -100px; animation-delay: 0s; }
+        .speed-line:nth-child(2) { top: 40%; width: 150px; left: -150px; animation-delay: 0.3s; }
+        .speed-line:nth-child(3) { top: 50%; width: 120px; left: -120px; animation-delay: 0.6s; }
+        .speed-line:nth-child(4) { top: 60%; width: 180px; left: -180px; animation-delay: 0.9s; }
+
+        @keyframes speedLineMove {
+            from { transform: translateX(0); }
+            to { transform: translateX(calc(100vw + 200px)); }
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.4) 100%);
+            z-index: 4;
+        }
+
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 5;
+            text-align: center;
+            width: 100%;
+            padding: 2rem;
+        }
+
+        .hero-title {
+            font-size: 5rem;
+            color: var(--accent-yellow);
+            font-weight: 900;
+            text-shadow: 0 0 40px rgba(251, 191, 36, 0.8),
+                         0 0 80px rgba(251, 191, 36, 0.5),
+                         5px 5px 0 var(--primary-blue),
+                         10px 10px 20px rgba(0,0,0,0.8);
+            margin-bottom: 1rem;
+            animation: heroTitleAnimation 2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        @keyframes heroTitleAnimation {
+            from {
+                transform: translateY(-100px) scale(0.5) rotateX(90deg);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0) scale(1) rotateX(0);
+                opacity: 1;
+            }
+        }
+
+        .hero-subtitle {
+            font-size: 2rem;
+            color: white;
+            text-shadow: 0 0 20px rgba(255,255,255,0.5),
+                         3px 3px 10px rgba(0,0,0,0.8);
+            animation: heroSubtitleAnimation 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.3s both;
+            letter-spacing: 6px;
+            font-weight: 300;
+            text-transform: uppercase;
+        }
+
+        @keyframes heroSubtitleAnimation {
+            from {
+                transform: translateY(100px) scale(0.5);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        .phone-number {
+            display: inline-block;
+            margin-top: 3rem;
+            padding: 20px 40px;
+            background: linear-gradient(135deg, var(--accent-yellow) 0%, #ff8800 100%);
+            color: var(--black);
+            text-decoration: none;
+            border-radius: 60px;
+            font-size: 1.4rem;
+            font-weight: 900;
+            animation: phoneAnimation 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.6s both,
+                       phonePulse 2s ease-in-out infinite;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 20px 60px rgba(251, 191, 36, 0.6),
+                        inset 0 0 20px rgba(255,255,255,0.3);
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .phone-number::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.5), transparent);
+            animation: phoneShine 3s linear infinite;
+        }
+
+        @keyframes phoneAnimation {
+            from {
+                transform: scale(0) rotate(360deg);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes phonePulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 20px 60px rgba(251, 191, 36, 0.6),
+                            inset 0 0 20px rgba(255,255,255,0.3);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 30px 80px rgba(251, 191, 36, 0.8),
+                            inset 0 0 30px rgba(255,255,255,0.5);
+            }
+        }
+
+        @keyframes phoneShine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .phone-number:hover {
+            transform: scale(1.15) rotate(5deg);
+            box-shadow: 0 40px 100px rgba(251, 191, 36, 0.9),
+                        inset 0 0 40px rgba(255,255,255,0.5);
+        }
+
+        /* Stunning Mission Section */
+        .mission {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #0a0e27 0%, #1e3a8a 50%, #0a0e27 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mission::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(90deg,
+                transparent 0px,
+                rgba(251, 191, 36, 0.03) 1px,
+                transparent 2px,
+                transparent 100px);
+            animation: missionGrid 10s linear infinite;
+        }
+
+        @keyframes missionGrid {
+            from { transform: translateX(0); }
+            to { transform: translateX(100px); }
+        }
+
+        .mission-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .mission h2 {
+            font-size: 4rem;
+            color: var(--accent-yellow);
+            margin-bottom: 3rem;
+            text-shadow: 0 0 40px rgba(251, 191, 36, 0.8),
+                         3px 3px 0 var(--primary-blue);
+            animation: missionTitleFloat 3s ease-in-out infinite;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        @keyframes missionTitleFloat {
+            0%, 100% {
+                transform: translateY(0);
+                text-shadow: 0 0 40px rgba(251, 191, 36, 0.8),
+                             3px 3px 0 var(--primary-blue);
+            }
+            50% {
+                transform: translateY(-10px);
+                text-shadow: 0 20px 60px rgba(251, 191, 36, 1),
+                             3px 3px 0 var(--primary-blue);
+            }
+        }
+
+        .mission-text {
+            font-size: 1.4rem;
+            color: var(--white);
+            line-height: 2;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            box-shadow: 0 20px 80px rgba(251, 191, 36, 0.2),
+                        inset 0 0 40px rgba(255,255,255,0.1);
+            animation: missionTextReveal 2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border: 2px solid rgba(251, 191, 36, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mission-text::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--accent-yellow), var(--primary-blue), var(--accent-yellow));
+            border-radius: 30px;
+            opacity: 0;
+            z-index: -1;
+            animation: missionBorderGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes missionBorderGlow {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 0.5; }
+        }
+
+        @keyframes missionTextReveal {
+            from {
+                transform: scale(0.8) rotateY(90deg);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1) rotateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Ultra Smooth Reviews Section */
+        .reviews {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, #000 0%, #0a0e27 50%, #000 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reviews::before {
+            content: '★';
+            position: absolute;
+            font-size: 400px;
+            color: rgba(251, 191, 36, 0.05);
+            top: -100px;
+            right: -100px;
+            animation: starFloat 20s linear infinite;
+        }
+
+        @keyframes starFloat {
+            0%, 100% {
+                transform: rotate(0deg) translateY(0);
+            }
+            50% {
+                transform: rotate(180deg) translateY(50px);
+            }
+        }
+
+        .reviews h2 {
+            text-align: center;
+            font-size: 3.5rem;
+            color: var(--accent-yellow);
+            margin-bottom: 4rem;
+            text-shadow: 0 0 40px rgba(251, 191, 36, 0.8),
+                         3px 3px 0 var(--primary-blue);
+            animation: reviewsTitleGlow 2s ease-in-out infinite;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        @keyframes reviewsTitleGlow {
+            0%, 100% {
+                text-shadow: 0 0 40px rgba(251, 191, 36, 0.8),
+                             3px 3px 0 var(--primary-blue);
+            }
+            50% {
+                text-shadow: 0 0 60px rgba(251, 191, 36, 1),
+                             0 0 100px rgba(251, 191, 36, 0.5),
+                             3px 3px 0 var(--primary-blue);
+            }
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .review-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 100%);
+            padding: 3rem;
+            border-radius: 30px;
+            box-shadow: 0 20px 80px rgba(251, 191, 36, 0.3),
+                        0 0 120px rgba(30, 58, 138, 0.2);
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+            position: relative;
+            overflow: hidden;
+            animation: reviewCardFloat 6s ease-in-out infinite;
+            animation-delay: calc(var(--delay) * 0.2s);
+        }
+
+        .review-card:nth-child(1) { --delay: 0; }
+        .review-card:nth-child(2) { --delay: 1; }
+        .review-card:nth-child(3) { --delay: 2; }
+
+        @keyframes reviewCardFloat {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-10px) rotate(1deg);
+            }
+            75% {
+                transform: translateY(-5px) rotate(-1deg);
+            }
+        }
+
+        .review-card::before {
+            content: '★★★★★';
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: var(--accent-yellow);
+            font-size: 2rem;
+            text-shadow: 0 0 20px rgba(251, 191, 36, 0.8);
+            animation: starsShine 2s ease-in-out infinite;
+        }
+
+        @keyframes starsShine {
+            0%, 100% {
+                text-shadow: 0 0 20px rgba(251, 191, 36, 0.8);
+                transform: scale(1);
+            }
+            50% {
+                text-shadow: 0 0 40px rgba(251, 191, 36, 1);
+                transform: scale(1.1);
+            }
+        }
+
+        .review-card:hover {
+            transform: translateY(-20px) rotate(3deg) scale(1.05);
+            box-shadow: 0 40px 120px rgba(251, 191, 36, 0.5),
+                        0 0 200px rgba(30, 58, 138, 0.3);
+        }
+
+        .review-text {
+            color: var(--dark-grey);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            font-style: italic;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .review-text::before {
+            content: '"';
+            position: absolute;
+            left: 0;
+            top: -10px;
+            font-size: 3rem;
+            color: var(--accent-yellow);
+            opacity: 0.5;
+        }
+
+        .review-author {
+            color: var(--primary-blue);
+            font-weight: 900;
+            font-size: 1.3rem;
+            text-align: right;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Stunning Location Section */
+        .location {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #f3f4f6 0%, white 50%, #f3f4f6 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .location::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(251, 191, 36, 0.1) 0%, transparent 70%);
+            animation: locationPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes locationPulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.8;
+            }
+        }
+
+        .location-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .location-info {
+            animation: locationInfoSlide 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        @keyframes locationInfoSlide {
+            from {
+                transform: translateX(-100px) rotate(-5deg);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0) rotate(0);
+                opacity: 1;
+            }
+        }
+
+        .location h2 {
+            font-size: 3.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 3rem;
+            text-shadow: 3px 3px 0 var(--accent-yellow);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: locationTitleBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes locationTitleBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .address-block,
+        .hours-block {
+            background: linear-gradient(135deg, white 0%, #f9fafb 100%);
+            padding: 2rem;
+            border-radius: 25px;
+            margin-bottom: 2rem;
+            box-shadow: 0 15px 60px rgba(0,0,0,0.1);
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border: 3px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .address-block::before,
+        .hours-block::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .address-block:hover::before,
+        .hours-block:hover::before {
+            left: 100%;
+        }
+
+        .address-block:hover,
+        .hours-block:hover {
+            transform: translateX(20px) scale(1.05);
+            box-shadow: 0 25px 100px rgba(251, 191, 36, 0.3);
+            border-color: var(--accent-yellow);
+        }
+
+        .map-container {
+            height: 500px;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 30px 100px rgba(0,0,0,0.3);
+            animation: mapSlide 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            position: relative;
+        }
+
+        @keyframes mapSlide {
+            from {
+                transform: translateX(100px) scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Stunning Services with AI-Generated Style Images */
+        .services-section {
+            padding: 120px 2rem 6rem;
+            min-height: 100vh;
+            background: linear-gradient(180deg, #0a0e27 0%, #1e3a8a 50%, #0a0e27 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .services-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-conic-gradient(from 0deg at 50% 50%, 
+                transparent 0deg, 
+                rgba(251, 191, 36, 0.05) 20deg, 
+                transparent 40deg);
+            animation: servicesRotate 60s linear infinite;
+        }
+
+        @keyframes servicesRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .services-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .services-title {
+            text-align: center;
+            font-size: 4rem;
+            color: var(--accent-yellow);
+            margin-bottom: 4rem;
+            text-shadow: 0 0 60px rgba(251, 191, 36, 0.8),
+                         4px 4px 0 var(--primary-blue);
+            animation: servicesTitlePulse 3s ease-in-out infinite;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        @keyframes servicesTitlePulse {
+            0%, 100% {
+                transform: scale(1);
+                text-shadow: 0 0 60px rgba(251, 191, 36, 0.8),
+                             4px 4px 0 var(--primary-blue);
+            }
+            50% {
+                transform: scale(1.05);
+                text-shadow: 0 0 100px rgba(251, 191, 36, 1),
+                             4px 4px 0 var(--primary-blue);
+            }
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 100%);
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 30px 100px rgba(251, 191, 36, 0.3);
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+            animation: serviceCardEntry 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            animation-delay: calc(var(--service-delay) * 0.1s);
+            position: relative;
+        }
+
+        .service-card:nth-child(1) { --service-delay: 1; }
+        .service-card:nth-child(2) { --service-delay: 2; }
+        .service-card:nth-child(3) { --service-delay: 3; }
+        .service-card:nth-child(4) { --service-delay: 4; }
+        .service-card:nth-child(5) { --service-delay: 5; }
+        .service-card:nth-child(6) { --service-delay: 6; }
+
+        @keyframes serviceCardEntry {
+            from {
+                transform: translateY(100px) scale(0.5) rotate(10deg);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0) scale(1) rotate(0);
+                opacity: 1;
+            }
+        }
+
+        .service-card:hover {
+            transform: translateY(-30px) scale(1.05) rotate(2deg);
+            box-shadow: 0 50px 150px rgba(251, 191, 36, 0.5);
+        }
+
+        .service-image {
+            height: 250px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-yellow) 100%);
+        }
+
+        /* AI-Generated Service Visuals */
+        .service-visual {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Battery Service Visual */
+        .battery-visual {
+            width: 120px;
+            height: 60px;
+            background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
+            border-radius: 10px;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(34, 197, 94, 0.5);
+            animation: batteryCharge 3s ease-in-out infinite;
+        }
+
+        .battery-visual::before {
+            content: '';
+            position: absolute;
+            right: -10px;
+            top: 20px;
+            width: 10px;
+            height: 20px;
+            background: #22c55e;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .battery-visual::after {
+            content: '⚡';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            color: white;
+            animation: lightningFlash 1s ease-in-out infinite;
+        }
+
+        @keyframes batteryCharge {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes lightningFlash {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        /* Oil Change Visual */
+        .oil-visual {
+            position: relative;
+            width: 150px;
+            height: 150px;
+        }
+
+        .oil-drop {
+            width: 60px;
+            height: 80px;
+            background: linear-gradient(135deg, #a16207 0%, #fbbf24 100%);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: oilDrip 2s ease-in-out infinite;
+            box-shadow: 0 20px 40px rgba(251, 191, 36, 0.5);
+        }
+
+        @keyframes oilDrip {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(20px);
+            }
+        }
+
+        .oil-container {
+            width: 100px;
+            height: 40px;
+            background: #374151;
+            border-radius: 10px;
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        /* Electrical Diagnostics Visual */
+        .electrical-visual {
+            position: relative;
+            width: 150px;
+            height: 150px;
+        }
+
+        .circuit-board {
+            width: 100%;
+            height: 100%;
+            background: #1e293b;
+            border-radius: 15px;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(30, 41, 59, 0.5);
+        }
+
+        .circuit-line {
+            position: absolute;
+            background: var(--accent-yellow);
+            box-shadow: 0 0 10px var(--accent-yellow);
+        }
+
+        .circuit-line:nth-child(1) {
+            width: 80px;
+            height: 3px;
+            top: 30px;
+            left: 20px;
+            animation: electricPulse 1s linear infinite;
+        }
+
+        .circuit-line:nth-child(2) {
+            width: 3px;
+            height: 60px;
+            top: 30px;
+            left: 97px;
+            animation: electricPulse 1s linear infinite 0.3s;
+        }
+
+        .circuit-line:nth-child(3) {
+            width: 60px;
+            height: 3px;
+            bottom: 40px;
+            right: 30px;
+            animation: electricPulse 1s linear infinite 0.6s;
+        }
+
+        @keyframes electricPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .circuit-node {
+            width: 15px;
+            height: 15px;
+            background: var(--accent-yellow);
+            border-radius: 50%;
+            position: absolute;
+            box-shadow: 0 0 20px var(--accent-yellow);
+            animation: nodePulse 2s ease-in-out infinite;
+        }
+
+        .circuit-node:nth-child(4) { top: 27px; left: 17px; }
+        .circuit-node:nth-child(5) { top: 27px; left: 94px; }
+        .circuit-node:nth-child(6) { bottom: 37px; right: 27px; }
+
+        @keyframes nodePulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 20px var(--accent-yellow);
+            }
+            50% {
+                transform: scale(1.3);
+                box-shadow: 0 0 40px var(--accent-yellow);
+            }
+        }
+
+        /* Engine Replacement Visual */
+        .engine-visual {
+            position: relative;
+            width: 150px;
+            height: 120px;
+        }
+
+        .engine-block {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #6b7280 0%, #374151 100%);
+            border-radius: 20px;
+            position: relative;
+            box-shadow: 0 30px 60px rgba(55, 65, 81, 0.5);
+            animation: engineRev 3s ease-in-out infinite;
+        }
+
+        @keyframes engineRev {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.05) rotate(1deg); }
+            75% { transform: scale(1.05) rotate(-1deg); }
+        }
+
+        .engine-piston {
+            width: 20px;
+            height: 40px;
+            background: #9ca3af;
+            position: absolute;
+            border-radius: 10px;
+            animation: pistonMove 1s ease-in-out infinite;
+        }
+
+        .engine-piston:nth-child(1) { left: 20px; top: 20px; animation-delay: 0s; }
+        .engine-piston:nth-child(2) { left: 50px; top: 20px; animation-delay: 0.25s; }
+        .engine-piston:nth-child(3) { left: 80px; top: 20px; animation-delay: 0.5s; }
+        .engine-piston:nth-child(4) { left: 110px; top: 20px; animation-delay: 0.75s; }
+
+        @keyframes pistonMove {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(20px); }
+        }
+
+        /* Tire Rotation Visual */
+        .tire-visual {
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, #1f2937 0%, #000 100%);
+            border-radius: 50%;
+            position: relative;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+            animation: tireRotation 2s linear infinite;
+        }
+
+        @keyframes tireRotation {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .tire-visual::before {
+            content: '';
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            width: 80%;
+            height: 80%;
+            background: #374151;
+            border-radius: 50%;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        .tire-tread {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            height: 3px;
+            background: #1f2937;
+        }
+
+        .tire-tread:nth-child(2) { transform: translate(-50%, -50%) rotate(45deg); }
+        .tire-tread:nth-child(3) { transform: translate(-50%, -50%) rotate(90deg); }
+        .tire-tread:nth-child(4) { transform: translate(-50%, -50%) rotate(135deg); }
+
+        /* Heating & Cooling Visual */
+        .hvac-visual {
+            position: relative;
+            width: 150px;
+            height: 150px;
+        }
+
+        .temp-gauge {
+            width: 120px;
+            height: 120px;
+            border: 8px solid #374151;
+            border-radius: 50%;
+            position: relative;
+            background: linear-gradient(135deg, #3b82f6 0%, #ef4444 100%);
+            box-shadow: 0 20px 60px rgba(59, 130, 246, 0.5);
+            animation: tempChange 4s ease-in-out infinite;
+        }
+
+        @keyframes tempChange {
+            0%, 100% {
+                background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+                box-shadow: 0 20px 60px rgba(59, 130, 246, 0.5);
+            }
+            50% {
+                background: linear-gradient(135deg, #f87171 0%, #ef4444 100%);
+                box-shadow: 0 20px 60px rgba(239, 68, 68, 0.5);
+            }
+        }
+
+        .temp-needle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 4px;
+            height: 50px;
+            background: #1f2937;
+            transform-origin: bottom center;
+            animation: needleSwing 4s ease-in-out infinite;
+        }
+
+        @keyframes needleSwing {
+            0%, 100% { transform: translate(-50%, -100%) rotate(-45deg); }
+            50% { transform: translate(-50%, -100%) rotate(45deg); }
+        }
+
+        .service-content {
+            padding: 2.5rem;
+            background: white;
+        }
+
+        .service-name {
+            font-size: 1.8rem;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .service-description {
+            color: var(--dark-grey);
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        /* Stunning About Page */
+        .about-section {
+            padding: 120px 2rem 6rem;
+            min-height: 100vh;
+            background: linear-gradient(180deg, #0a0e27 0%, #1e3a8a 50%, #0a0e27 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-hero {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-yellow) 100%);
+            padding: 5rem 3rem;
+            border-radius: 40px;
+            margin-bottom: 4rem;
+            color: white;
+            text-align: center;
+            animation: aboutHeroEntry 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 40px 120px rgba(251, 191, 36, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+            animation: aboutHeroShine 5s linear infinite;
+        }
+
+        @keyframes aboutHeroShine {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes aboutHeroEntry {
+            from {
+                transform: scale(0.5) rotateY(180deg);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1) rotateY(0);
+                opacity: 1;
+            }
+        }
+
+        .about-hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 40px rgba(0,0,0,0.3);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            animation: aboutTitleFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes aboutTitleFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-bottom: 4rem;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .value-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 100%);
+            padding: 3rem;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 30px 100px rgba(251, 191, 36, 0.3);
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+            animation: valueCardEntry 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            animation-delay: calc(var(--value-delay) * 0.1s);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-card:nth-child(1) { --value-delay: 1; }
+        .value-card:nth-child(2) { --value-delay: 2; }
+        .value-card:nth-child(3) { --value-delay: 3; }
+        .value-card:nth-child(4) { --value-delay: 4; }
+        .value-card:nth-child(5) { --value-delay: 5; }
+        .value-card:nth-child(6) { --value-delay: 6; }
+
+        @keyframes valueCardEntry {
+            from {
+                transform: translateY(100px) scale(0.5) rotate(-10deg);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0) scale(1) rotate(0);
+                opacity: 1;
+            }
+        }
+
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: -100%;
+            width: 300%;
+            height: 300%;
+            background: radial-gradient(circle, rgba(251, 191, 36, 0.1) 0%, transparent 70%);
+            animation: valueCardShine 6s linear infinite;
+            animation-delay: calc(var(--value-delay) * 0.5s);
+        }
+
+        @keyframes valueCardShine {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .value-card:hover {
+            transform: translateY(-20px) rotate(5deg) scale(1.05);
+            box-shadow: 0 50px 150px rgba(251, 191, 36, 0.5);
+        }
+
+        .value-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            animation: iconFloat 3s ease-in-out infinite;
+            animation-delay: calc(var(--value-delay) * 0.2s);
+            filter: drop-shadow(0 10px 20px rgba(251, 191, 36, 0.5));
+        }
+
+        @keyframes iconFloat {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-10px) rotate(10deg);
+            }
+        }
+
+        .value-title {
+            font-size: 1.8rem;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .value-description {
+            color: var(--dark-grey);
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        /* Stunning Footer */
+        footer {
+            background: linear-gradient(180deg, #000 0%, #0a0e27 100%);
+            color: white;
+            padding: 4rem 2rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-blue) 0%, var(--accent-yellow) 50%, var(--primary-blue) 100%);
+            animation: footerLineMove 3s linear infinite;
+        }
+
+        @keyframes footerLineMove {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(100%); }
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-logo {
+            font-size: 2.5rem;
+            color: var(--accent-yellow);
+            font-weight: 900;
+            margin-bottom: 3rem;
+            text-shadow: 0 0 40px rgba(251, 191, 36, 0.8);
+            animation: footerLogoGlow 2s ease-in-out infinite;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        @keyframes footerLogoGlow {
+            0%, 100% {
+                text-shadow: 0 0 40px rgba(251, 191, 36, 0.8);
+            }
+            50% {
+                text-shadow: 0 0 60px rgba(251, 191, 36, 1),
+                             0 0 100px rgba(251, 191, 36, 0.5);
+            }
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            position: relative;
+        }
+
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--accent-yellow);
+            transition: width 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-yellow);
+            transform: translateY(-5px) scale(1.1);
+            text-shadow: 0 10px 30px rgba(251, 191, 36, 0.5);
+        }
+
+        .footer-links a:hover::after {
+            width: 100%;
+        }
+
+        .copyright {
+            padding-top: 3rem;
+            border-top: 2px solid rgba(251, 191, 36, 0.3);
+            color: var(--light-grey);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        /* Page Management */
+        .page {
+            display: none;
+            animation: pageEntry 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        @keyframes pageEntry {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .nav-links {
+                gap: 1.5rem;
+                font-size: 1rem;
+            }
+            
+            .location-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .reviews-grid,
+            .services-grid,
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .car {
+                width: 100px;
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#home" class="logo">★ The Star Auto Service</a>
+            <ul class="nav-links">
+                <li><a href="#home" onclick="showPage('home')">Home</a></li>
+                <li><a href="#services" onclick="showPage('services')">Services</a></li>
+                <li><a href="#about" onclick="showPage('about')">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Floating Contact Button -->
+    <div class="floating-contact" onclick="openContactModal()">
+        Contact Us
+    </div>
+
+    <!-- Contact Modal -->
+    <div class="contact-modal" id="contactModal">
+        <span class="close-modal" onclick="closeContactModal()">×</span>
+        <form class="contact-form" onsubmit="sendContact(event)">
+            <h2>Get In Touch</h2>
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <input type="tel" name="phone" placeholder="Your Phone">
+            <textarea name="message" placeholder="How can we help you?" rows="4" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <!-- Hero Section with Racing Cars -->
+        <section class="hero">
+            <div class="racing-container">
+                <div class="mountain-road"></div>
+                <div class="road"></div>
+                
+                <!-- Racing Cars -->
+                <div class="car car1">
+                    <div class="car-body"></div>
+                </div>
+                <div class="car car2">
+                    <div class="car-body"></div>
+                </div>
+                
+                <!-- Speed Lines -->
+                <div class="speed-lines">
+                    <div class="speed-line"></div>
+                    <div class="speed-line"></div>
+                    <div class="speed-line"></div>
+                    <div class="speed-line"></div>
+                </div>
+            </div>
+            
+            <div class="hero-overlay"></div>
+            
+            <div class="hero-content">
+                <h1 class="hero-title">The Star Auto Service</h1>
+                <p class="hero-subtitle">Excellence in Every Mile</p>
+                <a href="tel:9722312886" class="phone-number">📞 (972) 231-2886</a>
+            </div>
+        </section>
+
+        <!-- Mission Section -->
+        <section class="mission">
+            <div class="mission-container">
+                <h2>Our Mission</h2>
+                <p class="mission-text">
+                    At The Star Auto Service, we are dedicated to providing exceptional automotive care with integrity, expertise, and a commitment to excellence. For years, we've been the trusted choice for Richardson families, delivering honest assessments, quality repairs, and outstanding customer service. We treat every vehicle as if it were our own, ensuring your safety and satisfaction on every journey. Our bilingual team brings technical mastery and genuine care to every service, building lasting relationships one repair at a time.
+                </p>
+            </div>
+        </section>
+
+        <!-- Reviews Section -->
+        <section class="reviews">
+            <div class="reviews-container">
+                <h2>What Our Customers Say</h2>
+                <div class="reviews-grid">
+                    <div class="review-card">
+                        <p class="review-text">
+                            Quickly diagnosed and repaired my vehicle for a very reasonable price. Additionally, they aired my tires up without me asking them to do so. That may not be a big deal to some, but it meant a lot to me and demonstrated their concern for details. I will definitely take my vehicle there again.
+                        </p>
+                        <p class="review-author">- Trish Hammons</p>
+                    </div>
+                    <div class="review-card">
+                        <p class="review-text">
+                            This company has helped maintain my two different cars for 6 years. Even would take me home while car repairs happened and returned me to the service center to pick up my car! Family values. Honest assessment. Good price. Quality service. Never a complaint re work done. Wonderful people. Thanks!!!!
+                        </p>
+                        <p class="review-author">- Beth Nystrom</p>
+                    </div>
+                    <div class="review-card">
+                        <p class="review-text">
+                            I have found my car's new mechanics. They fixed the mess that another mechanic made. I'm going to go back get the air conditioning worked on. And they're even going to do a little bit of body work for me. And all with a song in the voice and a smile on their face. See these guys trust these guys. I love these guys!!
+                        </p>
+                        <p class="review-author">- Laura Dorsett</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Location Section -->
+        <section class="location">
+            <div class="location-container">
+                <div class="location-info">
+                    <h2>Visit Us Today</h2>
+                    <div class="address-block">
+                        <h3 style="color: var(--primary-blue); margin-bottom: 0.5rem; font-size: 1.5rem;">📍 Address</h3>
+                        <p style="font-size: 1.2rem; color: var(--dark-grey);">900 E Belt Line Rd<br>Richardson, TX 75081</p>
+                    </div>
+                    <div class="hours-block">
+                        <h3 style="color: var(--primary-blue); margin-bottom: 0.5rem; font-size: 1.5rem;">🕐 Hours</h3>
+                        <p style="font-size: 1.2rem; color: var(--dark-grey);">Monday - Friday: 8 AM – 6:30 PM<br>
+                        Saturday: 8 AM – 4 PM<br>
+                        Sunday: Closed</p>
+                    </div>
+                </div>
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3348.9282!2d-96.7467!3d32.9274!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c1f4e5e5e5e5e%3A0x1234567890abcdef!2s900%20E%20Belt%20Line%20Rd%2C%20Richardson%2C%20TX%2075081!5e0!3m2!1sen!2sus!4v1234567890123" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Services Page -->
+    <div id="services" class="page">
+        <section class="services-section">
+            <div class="services-container">
+                <h1 class="services-title">Our Services</h1>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-image">
+                            <div class="service-visual">
+                                <div class="battery-visual"></div>
+                            </div>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-name">Battery Services</h3>
+                            <p class="service-description">Professional battery testing, replacement, and maintenance. We ensure your vehicle starts reliably every time with top-quality batteries and expert installation.</p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-image">
+                            <div class="service-visual">
+                                <div class="oil-visual">
+                                    <div class="oil-drop"></div>
+                                    <div class="oil-container"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-name">Oil Changes</h3>
+                            <p class="service-description">Full-service oil changes using premium oils and filters. Regular maintenance to keep your engine running smoothly and extend its life.</p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-image">
+                            <div class="service-visual">
+                                <div class="electrical-visual">
+                                    <div class="circuit-board">
+                                        <div class="circuit-line"></div>
+                                        <div class="circuit-line"></div>
+                                        <div class="circuit-line"></div>
+                                        <div class="circuit-node"></div>
+                                        <div class="circuit-node"></div>
+                                        <div class="circuit-node"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-name">Electrical Diagnostics</h3>
+                            <p class="service-description">Advanced diagnostic equipment to identify and resolve electrical issues. From simple fixes to complex wiring problems, we've got you covered.</p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-image">
+                            <div class="service-visual">
+                                <div class="engine-visual">
+                                    <div class="engine-block">
+                                        <div class="engine-piston"></div>
+                                        <div class="engine-piston"></div>
+                                        <div class="engine-piston"></div>
+                                        <div class="engine-piston"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-name">Engine Replacement</h3>
+                            <p class="service-description">Complete engine replacement services with warranty-backed parts. Expert installation and testing to get you back on the road safely.</p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-image">
+                            <div class="service-visual">
+                                <div class="tire-visual">
+                                    <div class="tire-tread"></div>
+                                    <div class="tire-tread"></div>
+                                    <div class="tire-tread"></div>
+                                    <div class="tire-tread"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-name">Tire Rotation</h3>
+                            <p class="service-description">Regular tire rotation to ensure even wear and extend tire life. Includes pressure check and visual inspection for optimal safety.</p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-image">
+                            <div class="service-visual">
+                                <div class="hvac-visual">
+                                    <div class="temp-gauge">
+                                        <div class="temp-needle"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-name">Heating & Cooling</h3>
+                            <p class="service-description">Complete HVAC system service including A/C repair, heater maintenance, and refrigerant recharge. Stay comfortable year-round.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- About Page -->
+    <div id="about" class="page">
+        <section class="about-section">
+            <div class="services-container">
+                <div class="about-hero">
+                    <h1>About The Star Auto Service</h1>
+                    <p style="font-size: 1.5rem; letter-spacing: 2px;">Serving Richardson with Pride Since Our Establishment</p>
+                </div>
+                
+                <div class="values-grid">
+                    <div class="value-card">
+                        <div class="value-icon">🤝</div>
+                        <h3 class="value-title">Trust & Integrity</h3>
+                        <p class="value-description">We believe in honest assessments and transparent pricing. No surprises, no unnecessary repairs - just straight talk about what your vehicle needs.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">🌎</div>
+                        <h3 class="value-title">Bilingual Service</h3>
+                        <p class="value-description">Proudly serving our diverse community with fluent English and Spanish speaking staff. Communication without barriers.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">⭐</div>
+                        <h3 class="value-title">Excellence</h3>
+                        <p class="value-description">ASE certified technicians with decades of combined experience. We use the latest diagnostic equipment and highest quality parts.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">👨‍👩‍👧‍👦</div>
+                        <h3 class="value-title">Family Values</h3>
+                        <p class="value-description">We treat our customers like family. From courtesy rides to going the extra mile, we're here to make your life easier.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">📍</div>
+                        <h3 class="value-title">Local Legacy</h3>
+                        <p class="value-description">Deep roots in Richardson with a long-standing commitment to our community. Your neighborhood mechanics you can count on.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">💰</div>
+                        <h3 class="value-title">Fair Pricing</h3>
+                        <p class="value-description">Competitive rates without compromising quality. We believe great service should be accessible to everyone.</p>
+                    </div>
+                </div>
+
+                <div class="mission-container" style="margin-top: 4rem;">
+                    <h2 style="color: var(--accent-yellow); margin-bottom: 2rem;">Why Choose Us?</h2>
+                    <p class="mission-text">
+                        The Star Auto Service has been a cornerstone of automotive excellence in Richardson for years. Our commitment to quality, combined with our genuine care for every customer, sets us apart. We've built our reputation one satisfied customer at a time, earning 5-star reviews through consistent delivery of exceptional service. Whether you need routine maintenance or major repairs, our skilled technicians approach every job with the same dedication to excellence. Visit us today and experience the difference that passion and expertise make.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">★ The Star Auto Service</div>
+            <div class="footer-links">
+                <a href="#home" onclick="showPage('home')">Home</a>
+                <a href="#services" onclick="showPage('services')">Services</a>
+                <a href="#about" onclick="showPage('about')">About</a>
+                <a href="tel:9722312886">Call Us</a>
+            </div>
+            <div class="copyright">
+                <p>© 2024 The Star Auto Service. All rights reserved.</p>
+                <p>900 E Belt Line Rd, Richardson, TX 75081 | (972) 231-2886</p>
+                <p>Licensed & Insured | ASE Certified Technicians</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Page navigation with smooth transitions
+        function showPage(pageName) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            setTimeout(() => {
+                document.getElementById(pageName).classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 100);
+        }
+
+        // Contact modal functions with animations
+        function openContactModal() {
+            const modal = document.getElementById('contactModal');
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeContactModal() {
+            const modal = document.getElementById('contactModal');
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Send contact form
+        function sendContact(event) {
+            event.preventDefault();
+            const form = event.target;
+            const formData = new FormData(form);
+            
+            // Create mailto link
+            const subject = encodeURIComponent('New Contact from Website');
+            const body = encodeURIComponent(
+                `Name: ${formData.get('name')}\n` +
+                `Email: ${formData.get('email')}\n` +
+                `Phone: ${formData.get('phone')}\n` +
+                `Message: ${formData.get('message')}`
+            );
+            
+            window.location.href = `mailto:thestarautoservice1@gmail.com?subject=${subject}&body=${body}`;
+            
+            // Close modal and reset form
+            closeContactModal();
+            form.reset();
+            
+            // Success animation
+            const successMsg = document.createElement('div');
+            successMsg.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: linear-gradient(135deg, var(--primary-blue), var(--accent-yellow));
+                color: white;
+                padding: 30px 50px;
+                border-radius: 20px;
+                font-size: 1.5rem;
+                font-weight: bold;
+                z-index: 3000;
+                animation: successPop 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            `;
+            successMsg.textContent = 'Message Sent Successfully!';
+            document.body.appendChild(successMsg);
+            
+            setTimeout(() => {
+                successMsg.remove();
+            }, 3000);
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('contactModal');
+            if (event.target == modal) {
+                closeContactModal();
+            }
+        }
+
+        // Enhanced scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0) rotate(0)';
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.review-card, .service-card, .value-card, .address-block, .hours-block');
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(50px) rotate(-2deg)';
+                el.style.transition = 'all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+                observer.observe(el);
+            });
+        });
+
+        // Parallax effects
+        let ticking = false;
+        function updateParallax() {
+            const scrolled = window.pageYOffset;
+            
+            // Hero parallax
+            const racingContainer = document.querySelector('.racing-container');
+            if (racingContainer) {
+                racingContainer.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+            
+            // Mountain parallax
+            const mountain = document.querySelector('.mountain-road');
+            if (mountain) {
+                mountain.style.transform = `translateY(${scrolled * 0.3}px)`;
+            }
+            
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        });
+
+        // Add dynamic car racing effects
+        setInterval(() => {
+            const cars = document.querySelectorAll('.car');
+            cars.forEach((car, index) => {
+                const randomDelay = Math.random() * 200;
+                setTimeout(() => {
+                    car.style.animation = 'none';
+                    setTimeout(() => {
+                        car.style.animation = '';
+                    }, 10);
+                }, randomDelay);
+            });
+        }, 4000);
+
+        // Create floating particles effect
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.style.cssText = `
+                position: fixed;
+                width: 4px;
+                height: 4px;
+                background: var(--accent-yellow);
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 1;
+                left: ${Math.random() * window.innerWidth}px;
+                top: ${window.innerHeight}px;
+                box-shadow: 0 0 10px var(--accent-yellow);
+            `;
+            document.body.appendChild(particle);
+            
+            const duration = 3000 + Math.random() * 2000;
+            const horizontalMove = (Math.random() - 0.5) * 100;
+            
+            particle.animate([
+                { transform: 'translate(0, 0)', opacity: 0 },
+                { transform: `translate(${horizontalMove}px, -${window.innerHeight + 100}px)`, opacity: 1 },
+                { transform: `translate(${horizontalMove * 2}px, -${window.innerHeight + 200}px)`, opacity: 0 }
+            ], {
+                duration: duration,
+                easing: 'ease-out'
+            }).onfinish = () => particle.remove();
+        }
+
+        // Create particles occasionally
+        setInterval(createParticle, 300);
+
+        // Add success animation styles
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes successPop {
+                from {
+                    transform: translate(-50%, -50%) scale(0) rotate(180deg);
+                    opacity: 0;
+                }
+                50% {
+                    transform: translate(-50%, -50%) scale(1.2) rotate(360deg);
+                }
+                to {
+                    transform: translate(-50%, -50%) scale(1) rotate(360deg);
+                    opacity: 1;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
