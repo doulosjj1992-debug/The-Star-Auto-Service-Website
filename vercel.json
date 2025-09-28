@@ -1,0 +1,5 @@
+{
+  "redirects": [
+    { "source": "www.thestarautoservice.com/:path*", "destination": "https://thestarautoservice.com/:path*", "permanent": true }
+  ]
+}
