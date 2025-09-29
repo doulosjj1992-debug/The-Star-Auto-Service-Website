@@ -1,0 +1,6 @@
+@media (max-width:560px){
+  /* hide common logo selectors; adjust later if needed */
+  .site-logo, .logo, #logo, header .brand, header img[src*="logo-star"] { 
+    display:none !important;
+  }
+}
