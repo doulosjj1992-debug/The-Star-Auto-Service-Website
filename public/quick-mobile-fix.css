@@ -1,7 +1,4 @@
-/* Hide or shrink the logo on phones */
-@media (max-width: 768px){
-  /* try the broad set first so we match whatever the logo is */
-  .site-logo, .logo, #logo, header .brand, header a[aria-label*="logo"], header img, header svg {
-    display: none !important;
-  }
+/* Hide the glowing logo on small screens */
+@media (max-width: 640px) {
+  .logo, img.logo, #logo { display: none !important; }
 }
