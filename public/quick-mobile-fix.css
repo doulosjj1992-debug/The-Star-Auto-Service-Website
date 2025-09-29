@@ -1,6 +1,7 @@
-@media (max-width:560px){
-  /* hide common logo selectors; adjust later if needed */
-  .site-logo, .logo, #logo, header .brand, header img[src*="logo-star"] { 
-    display:none !important;
+/* Hide or shrink the logo on phones */
+@media (max-width: 768px){
+  /* try the broad set first so we match whatever the logo is */
+  .site-logo, .logo, #logo, header .brand, header a[aria-label*="logo"], header img, header svg {
+    display: none !important;
   }
 }
