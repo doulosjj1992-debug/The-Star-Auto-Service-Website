@@ -1,4 +1,19 @@
-/* Hide the glowing logo on small screens */
+/* Hide/move the header logo on phones to avoid overlap */
 @media (max-width: 640px) {
-  .logo, img.logo, #logo { display: none !important; }
+  .logo, .logo-glow, img.logo, #logo,
+  header img[alt*="star" i], header img[src*="logo"],
+  a[href="/"] > img {
+    display: none !important;
+  }
+}
+
+/* Reserve space for large images to prevent layout shift */
+.hero img, .mission img, img[decoding="async"] {
+  height: auto;
+  aspect-ratio: attr(width) / attr(height);
+}
+
+/* Tighter mobile spacing for hero */
+@media (max-width: 640px) {
+  .hero { padding-top: 1.25rem; padding-bottom: 1.25rem; }
 }
