@@ -1,16 +1,49 @@
+/* ===== Hero positioning ===== */
+:root{
+  /* Tweak these two values to move titles up/down */
+  --hero-nudge-desktop: -6vw;   /* was ~ -3.5vw */
+  --hero-nudge-mobile:  -18vw;  /* moved further up on phones */
+}
 .hero-shell,.hero,.hero-banner{position:relative}
-.hero-titles{margin-top:-3.5vw}
-@media (max-width:768px){ .hero-titles{margin-top:-8vw} }
+.hero-titles{margin-top:var(--hero-nudge-desktop)}
+@media (max-width:768px){
+  .hero-titles{margin-top:var(--hero-nudge-mobile)}
+}
+
+/* Subheader spacing */
 .hero-sub{margin-top:0.6rem}
 
-/* Address line */
-.hero-address{margin-top:.75rem;font-size:clamp(14px,2.7vw,18px);color:#e9ecf1}
-.hero-address a{color:#ffd166;text-underline-offset:2px}
+/* ===== Address line styling & animation ===== */
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:none}}
 
-/* Optional: make whole map clickable if you wrap it in .map-wrap */
-.map-wrap{position:relative}
-.map-opener{position:absolute;inset:0;display:block;z-index:3;background:transparent}
+.hero-address{
+  margin-top:.75rem;
+  font-size:clamp(14px,2.7vw,18px);
+  color:#e9ecf1;
+  animation:fadeUp .6s ease-out .15s both;
+}
+.hero-address a{
+  color:#ffd166;               /* brand yellow */
+  text-decoration:none;
+  position:relative;
+  text-underline-offset:2px;
+}
+.hero-address a::after{
+  content:"";
+  position:absolute;
+  left:0; right:auto; bottom:-2px;
+  height:2px; width:0;
+  background: currentColor;
+  transition: width .35s ease;
+}
+.hero-address a:hover::after,
+.hero-address a:focus-visible::after{ width:100% }
 
-/* Guard against CLS if using #site-hero picture */
+/* ===== Prevent hero image CLS (if #site-hero <picture> exists) ===== */
 #site-hero{display:block}
 #site-hero img{width:100%;height:auto;display:block;aspect-ratio:1280/426}
+
+/* Optional: hold header height on mobile to avoid bumps */
+@media (max-width:640px){
+  header.site-header{min-height:56px}
+}
