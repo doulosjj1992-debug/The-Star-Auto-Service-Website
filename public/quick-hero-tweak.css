@@ -31,3 +31,76 @@
 /* Prevent hero image CLS if using #site-hero picture */
 #site-hero{display:block}
 #site-hero img{width:100%;height:auto;display:block;aspect-ratio:1280/426}
+/* mobile-logo-guard */
+@media (max-width:640px){
+  .site-logo,.header-logo,.nav .logo,.logo,.logo-star{max-height:30px; z-index:0}
+}
+/* mobile-logo-guard */
+@media (max-width:640px){
+  .site-logo,.header-logo,.nav .logo,.logo,.logo-star{max-height:30px; z-index:0}
+}
+/* mobile-logo-guard */
+@media (max-width:640px){
+  .site-logo,.header-logo,.nav .logo,.logo,.logo-star{max-height:30px; z-index:0}
+}
+
+/* Address pill entrance */
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:none}}
+.hero-address{opacity:0;transform:translateY(12px);animation:fadeUp .6s ease-out .15s both}
+
+/* Pill styling + subtle arrow nudge */
+.hero-address a{
+  --pad:.55rem .9rem;
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:var(--pad);border-radius:999px;
+  background:rgba(0,0,0,.18);color:#ffd166;text-decoration:none;
+  box-shadow:0 0.35rem 1.4rem rgba(0,0,0,.25) inset, 0 .2rem .6rem rgba(0,0,0,.25);
+  backdrop-filter:saturate(120%) blur(2px);
+}
+.hero-address a::after{content:"→";font-weight:700;opacity:.85;transform:translateX(0);transition:transform .25s ease,opacity .25s ease}
+.hero-address a:hover::after,.hero-address a:focus-visible::after{transform:translateX(4px);opacity:1}
+
+@media (prefers-reduced-motion:reduce){
+  .hero-address{animation:none}
+  .hero-address a::after{transition:none}
+}
+/* mobile-logo-guard */
+@media (max-width:640px){
+  .site-logo,.header-logo,.nav .logo,.logo,.logo-star{max-height:30px; z-index:0}
+}
+
+/* === Address pill entrance & attention === */
+.hero-address{opacity:0;transform:translateY(10px) scale(.98)}
+.hero-address.reveal{animation:heroPop .60s cubic-bezier(.19,1,.22,1) .10s forwards}
+@keyframes heroPop{
+  0%{opacity:0;transform:translateY(12px) scale(.96)}
+  60%{opacity:1;transform:translateY(0) scale(1.015)}
+  100%{opacity:1;transform:translateY(0) scale(1)}
+}
+
+/* Subtle breathing glow on the pill itself (does not change layout) */
+.hero-address a{
+  position:relative;
+  display:inline-flex;align-items:center;gap:.55rem;
+  padding:.55rem 1rem;border-radius:999px;text-decoration:none;
+  transform:translateZ(0);
+  box-shadow: 0 .25rem .85rem rgba(0,0,0,.28);
+  animation:heroGlow 3.2s ease-in-out 1.2s infinite alternate;
+}
+.hero-address a::after{
+  content:"→"; font-weight:700; opacity:.85;
+  transition:transform .22s ease, opacity .22s ease;
+}
+.hero-address a:hover::after,
+.hero-address a:focus-visible::after{ transform:translateX(4px); opacity:1; }
+
+@keyframes heroGlow{
+  0%  { filter: drop-shadow(0 0 0 rgba(255,209,102,.0)); }
+  100%{ filter: drop-shadow(0 0 .55rem rgba(255,209,102,.55)); }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion:reduce){
+  .hero-address{animation:none;opacity:1;transform:none}
+  .hero-address a{animation:none}
+}
