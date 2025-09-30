@@ -1,15 +1,19 @@
 (function () {
-  function onReady() {
-    var pill = document.querySelector('.hero-address');
-    if (pill) pill.classList.add('reveal');      // <-- triggers CSS entrance animation
-  }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', onReady);
-  } else {
-    onReady();
+  function addReveal() {
+    var el = document.querySelector('.hero-address');
+    if (el && !el.classList.contains('reveal')) el.classList.add('reveal');
   }
 
-  // Smart Maps link (Apple for iOS, Google otherwise)
+  // On first parse
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', addReveal);
+  } else {
+    addReveal();
+  }
+  // And again after a tick (helps if the markup is injected late)
+  setTimeout(addReveal, 0);
+
+  // Smart Maps link
   var addr = "900 E Belt Line Rd, Richardson, TX 75081";
   var g = "https://maps.google.com/?q=" + encodeURIComponent(addr);
   var a = "https://maps.apple.com/?q=" + encodeURIComponent(addr);
