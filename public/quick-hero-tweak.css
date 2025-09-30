@@ -1,10 +1,11 @@
-/* Initial state + reveal animation (matches existing hero motion) */
-.hero-address, #map-link, [data-addr]{opacity:0;transform:translateY(12px)}
-.hero-address.reveal, #map-link.reveal, [data-addr].reveal{
+/* Initial state + reveal (match hero timing curve) */
+.hero-address, .hero-address a, #map-link, [data-addr]{opacity:0;transform:translateY(12px)}
+.hero-address.reveal, .hero-address a.reveal, #map-link.reveal, [data-addr].reveal{
   animation:fadeUp .65s cubic-bezier(.22,.8,.2,1) .12s both
 }
-@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes fadeUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:none} }
 
+/* Pill visuals */
 .hero-address a,#map-link,[data-addr]{
   --pad:.55rem .9rem;
   display:inline-flex;align-items:center;gap:.5rem;
@@ -24,11 +25,11 @@
   transform:translateX(4px);opacity:1
 }
 
-/* Slightly tighter spacing so cars aren’t covered */
+/* Tighten spacing so cars aren’t covered */
 .hero-sub{margin-top:.35rem}
 .hero-titles{margin-top:-4.75vw}
-@media(max-width:768px){.hero-titles{margin-top:-14vw}}
+@media (max-width:768px){ .hero-titles{margin-top:-14vw} }
 
-@media(prefers-reduced-motion:reduce){
-  .hero-address.reveal,#map-link.reveal,[data-addr].reveal{animation:none}
+@media (prefers-reduced-motion:reduce){
+  .hero-address.reveal, .hero-address a.reveal, #map-link.reveal, [data-addr].reveal{animation:none}
 }
