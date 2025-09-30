@@ -1,0 +1,34 @@
+/* Pull hero copy upward and tighten spacing (mobile gets a bit more lift) */
+.hero, .hero-shell, .hero-banner {
+  padding-top: clamp(12px, 4vh, 36px);
+  padding-bottom: clamp(16px, 6vh, 48px);
+}
+.hero-copy { 
+  margin-top: clamp(-8px, -2vh, 0); 
+}
+
+/* Address subheader style */
+.hero-address {
+  margin-top: 10px;
+  font-weight: 600;
+  letter-spacing: .02em;
+}
+.hero-address a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Bottom map: big “Open in Maps” button overlay (mobile-first) */
+.map-cta-wrap { position: relative; }
+.map-cta-wrap .open-maps-btn {
+  position: absolute; inset: auto 12px 12px 12px;
+  display: inline-block; text-align: center;
+  padding: 12px 16px; border-radius: 10px;
+  background: #0B5FFF; color: #fff; font-weight: 700;
+  text-decoration: none; box-shadow: 0 6px 20px rgba(0,0,0,.25);
+}
+@media (min-width: 640px){
+  .hero, .hero-shell, .hero-banner { padding-top: 36px; }
+  .hero-copy { margin-top: -8px; }
+  .map-cta-wrap .open-maps-btn { inset: auto 16px 16px auto; }
+}

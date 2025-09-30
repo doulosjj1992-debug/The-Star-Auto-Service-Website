@@ -1,0 +1,13 @@
+/* Move hero titles up and slightly center tighter */
+.hero-shell,.hero,.hero-banner{position:relative}
+.hero-titles{margin-top:-3.5vw}
+@media (max-width: 768px){
+  .hero-titles{margin-top:-8vw}
+}
+
+/* Optional: reduce space under subheader a touch */
+.hero-sub{margin-top:0.6rem}
+
+/* Ensure hero image doesn’t cause CLS */
+#site-hero{display:block}
+#site-hero img{width:100%;height:auto;display:block;aspect-ratio:1280/426}

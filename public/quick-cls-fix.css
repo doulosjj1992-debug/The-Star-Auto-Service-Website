@@ -1,0 +1,14 @@
+/* Reserve aspect ratios for key images/sections (tweak as needed) */
+.mission-picture, .mission-image { display:block; }
+.mission-picture img { width:100%; height:auto; }
+
+/* If your hero has a known ratio, enforce it until image paints */
+.hero-shell, .hero, .hero-banner {
+  aspect-ratio: 3 / 1;  /* adjust if needed */
+  overflow: clip;
+}
+
+/* Avoid shifting header: lock header height on mobile */
+@media (max-width: 640px){
+  header.site-header, header { min-height:56px } /* header fallback if no class */
+}

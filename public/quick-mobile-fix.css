@@ -17,3 +17,29 @@
 @media (max-width: 640px) {
   .hero { padding-top: 1.25rem; padding-bottom: 1.25rem; }
 }
+
+/* --- CLS fixes (Batch A) --- */
+.mission-image, .mission-image img {
+  display:block;
+}
+.mission-image {
+  /* reserve space for a 16:9 banner; adjust if your banner is taller */
+  aspect-ratio: 16/9;
+  width: 100%;
+  overflow: hidden;
+}
+.mission-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Keep header/logo from shifting */
+.header-logo, #site-logo {
+  display:inline-block;
+  width: 40px;   /* match your design */
+  height: 40px;  /* match your design */
+}
+@media (min-width: 640px) {
+  .header-logo, #site-logo { width: 48px; height: 48px; }
+}
