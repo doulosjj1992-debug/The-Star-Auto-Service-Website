@@ -80,3 +80,11 @@
 
 /* Make the entrance a bit more noticeable */
 .hero-address.reveal{animation:fadeUp .75s cubic-bezier(.22,.8,.2,1) .1s both}
+
+/* Hide the brand block entirely on small screens to prevent overlap */
+@media (max-width:640px){
+  header .brand, header .logo, header .site-logo, .header-logo, .nav .logo,
+  header [class*="logo"], header a[aria-label*="Star Auto"] {
+    display:none !important;
+  }
+}
