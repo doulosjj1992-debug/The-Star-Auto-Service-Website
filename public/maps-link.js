@@ -1,39 +1,54 @@
 (function () {
-  function setMapsHref() {
+  // Pick the most specific target we can find
+  function pickTarget() {
+    return (
+      document.getElementById('map-link') ||
+      document.querySelector('[data-addr]') ||
+      document.querySelector('.hero-address a') ||
+      document.querySelector('.hero a[href*="maps.google.com"], .hero a[href*="maps.apple.com"]') ||
+      null
+    );
+  }
+
+  function setMapsHref(a) {
     var addr = "900 E Belt Line Rd, Richardson, TX 75081";
     var g = "https://maps.google.com/?q=" + encodeURIComponent(addr);
-    var a = "https://maps.apple.com/?q=" + encodeURIComponent(addr);
-    var isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-    var link = document.getElementById("map-link");
-    if (link) link.href = isiOS ? a : g;
+    var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    var url = iOS ? "https://maps.apple.com/?q=" + encodeURIComponent(addr) : g;
+    if (a) a.href = url;
   }
 
-  function targetNode() {
-    var link = document.getElementById("map-link");
-    if (!link) return null;
-    return link.closest(".hero-address") || link; // prefer wrapper, fallback to link
+  function revealOnce(el) {
+    if (!el) return;
+    el.classList.remove('reveal');
+    void el.offsetWidth; // reflow to restart
+    requestAnimationFrame(function(){ el.classList.add('reveal'); });
   }
 
-  function reveal() {
-    var node = targetNode();
-    if (!node) return false;
-    node.classList.remove("reveal");
-    void node.offsetWidth; // restart keyframes
-    requestAnimationFrame(function () { node.classList.add("reveal"); });
+  function init() {
+    var el = pickTarget();
+    if (!el) return false;
+    setMapsHref(el.tagName === 'A' ? el : el.querySelector('a'));
+    // If already visible, reveal now; else, observe
+    var io = new IntersectionObserver(function(entries, obs){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { revealOnce(el); obs.disconnect(); }
+      });
+    }, {threshold: 0.2});
+    io.observe(el);
     return true;
   }
 
-  // Try now; if missing, observe until it appears
-  if (!reveal()) {
-    var mo = new MutationObserver(function () { if (reveal()) mo.disconnect(); });
-    mo.observe(document.documentElement, { childList: true, subtree: true });
-  }
-
-  // Ensure href + another tick for late CSS
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", function () { setMapsHref(); reveal(); }, { once: true });
-  } else {
-    setMapsHref();
-    setTimeout(reveal, 0);
+  // Try immediately
+  if (!init()) {
+    // Try on DOM ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init, {once:true});
+    }
+    // And watch for late DOM
+    var mo = new MutationObserver(function(){
+      if (init()) mo.disconnect();
+    });
+    mo.observe(document.documentElement, {childList:true, subtree:true});
   }
 })();
