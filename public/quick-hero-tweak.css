@@ -1,35 +1,34 @@
-/* === Hero address pill: consistent fade-up like the rest of the hero === */
-.hero-address, #map-link, [data-addr] { opacity:0; transform:translateY(12px) }
-.hero-address.reveal, #map-link.reveal, [data-addr].reveal {
-  animation: fadeUp .75s cubic-bezier(.22,.8,.2,1) .1s both
+/* Initial state + reveal animation (matches existing hero motion) */
+.hero-address, #map-link, [data-addr]{opacity:0;transform:translateY(12px)}
+.hero-address.reveal, #map-link.reveal, [data-addr].reveal{
+  animation:fadeUp .65s cubic-bezier(.22,.8,.2,1) .12s both
 }
-@keyframes fadeUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:none} }
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 
-/* Pill visual */
-.hero-address a, #map-link, [data-addr]{
+.hero-address a,#map-link,[data-addr]{
   --pad:.55rem .9rem;
-  display:inline-flex; align-items:center; gap:.5rem;
-  padding:var(--pad); border-radius:999px;
-  background:rgba(0,0,0,.18); color:#ffd166; text-decoration:none;
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:var(--pad);border-radius:999px;
+  background:rgba(0,0,0,.18);color:#ffd166;text-decoration:none;
   box-shadow:0 .35rem 1.4rem rgba(0,0,0,.25) inset, 0 .2rem .6rem rgba(0,0,0,.25);
   backdrop-filter:saturate(120%) blur(2px);
   transform:translateZ(0);
 }
-.hero-address a::after, #map-link::after, [data-addr]::after{
-  content:"\2192"; font-weight:700; opacity:.85; transform:translateX(0);
-  transition:transform .25s ease, opacity .25s ease;
+.hero-address a::after,#map-link::after,[data-addr]::after{
+  content:"\2192";font-weight:700;opacity:.85;
+  transform:translateX(0);transition:transform .25s ease,opacity .25s ease
 }
-.hero-address a:hover::after, .hero-address a:focus-visible::after,
-#map-link:hover::after, #map-link:focus-visible::after,
-[data-addr]:hover::after, [data-addr]:focus-visible::after {
-  transform:translateX(4px); opacity:1;
+.hero-address a:hover::after,.hero-address a:focus-visible::after,
+#map-link:hover::after,#map-link:focus-visible::after,
+[data-addr]:hover::after,[data-addr]:focus-visible::after{
+  transform:translateX(4px);opacity:1
 }
 
-/* Spacing so cars aren’t covered */
-.hero-sub{ margin-top:.35rem }
-.hero-titles{ margin-top:-4.75vw }
-@media (max-width:768px){ .hero-titles{ margin-top:-14vw } }
+/* Slightly tighter spacing so cars aren’t covered */
+.hero-sub{margin-top:.35rem}
+.hero-titles{margin-top:-4.75vw}
+@media(max-width:768px){.hero-titles{margin-top:-14vw}}
 
-@media (prefers-reduced-motion:reduce){
-  .hero-address.reveal, #map-link.reveal, [data-addr].reveal { animation:none }
+@media(prefers-reduced-motion:reduce){
+  .hero-address.reveal,#map-link.reveal,[data-addr].reveal{animation:none}
 }
