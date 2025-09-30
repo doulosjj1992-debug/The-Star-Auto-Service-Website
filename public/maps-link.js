@@ -8,32 +8,32 @@
     if (link) link.href = isiOS ? a : g;
   }
 
-  function revealWhenReady() {
-    var el = document.querySelector('.hero-address');
-    if (el) {
-      el.classList.remove('reveal');
-      void el.offsetWidth;                // reflow to restart keyframes
-      requestAnimationFrame(function(){ el.classList.add('reveal'); });
-      return true;
-    }
-    return false;
+  function targetNode() {
+    var link = document.getElementById("map-link");
+    if (!link) return null;
+    return link.closest(".hero-address") || link; // prefer wrapper, fallback to link
   }
 
-  // Run immediately if possible, otherwise observe until it exists
-  if (!revealWhenReady()) {
-    var mo = new MutationObserver(function(){
-      if (revealWhenReady()) { mo.disconnect(); }
-    });
-    mo.observe(document.documentElement, {childList:true,subtree:true});
+  function reveal() {
+    var node = targetNode();
+    if (!node) return false;
+    node.classList.remove("reveal");
+    void node.offsetWidth; // restart keyframes
+    requestAnimationFrame(function () { node.classList.add("reveal"); });
+    return true;
   }
 
-  // Also run on DOM ready as a safety net
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function(){ revealWhenReady(); setMapsHref(); }, {once:true});
+  // Try now; if missing, observe until it appears
+  if (!reveal()) {
+    var mo = new MutationObserver(function () { if (reveal()) mo.disconnect(); });
+    mo.observe(document.documentElement, { childList: true, subtree: true });
+  }
+
+  // Ensure href + another tick for late CSS
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", function () { setMapsHref(); reveal(); }, { once: true });
   } else {
     setMapsHref();
+    setTimeout(reveal, 0);
   }
-
-  // One more tick (covers late CSS)
-  setTimeout(revealWhenReady, 0);
 })();
