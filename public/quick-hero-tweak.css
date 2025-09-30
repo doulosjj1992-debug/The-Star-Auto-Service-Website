@@ -1,90 +1,35 @@
-/* --- hero placement tweaks --- */
-.hero-shell,.hero,.hero-banner{position:relative}
-.hero-titles{margin-top:-4.25vw}
-@media (max-width:768px){ .hero-titles{margin-top:-12vw} }
-.hero-sub{margin-top:.55rem}
-
-/* --- address pill: entrance + hover/focus --- */
-@keyframes fadeUp{from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:none}}
-.hero-address{opacity:0;transform:translateY(12px)}   /* start hidden */
-.hero-address.reveal{animation:fadeUp .6s ease-out .15s both}
-
-.hero-address a{
-  --pad:.60rem .95rem;
-  display:inline-flex; align-items:center; gap:.5rem;
-  padding:var(--pad);
-  border-radius:999px;
-  background:rgba(0,0,0,.18);
-  color:#ffd166; text-decoration:none;
-  box-shadow:0 0.35rem 1.4rem rgba(0,0,0,.25) inset, 0 .2rem .6rem rgba(0,0,0,.25);
-  backdrop-filter:saturate(120%) blur(2px);
-  transform:translateZ(0);
-}
-.hero-address a::after{
-  content:"→"; font-weight:700; opacity:.85;
-  transform:translateX(0);
-  transition:transform .25s ease, opacity .25s ease;
-}
-.hero-address a:hover::after,.hero-address a:focus-visible::after{
-  transform:translateX(4px); opacity:1;
-}
-
-/* motion-safe */
-@media (prefers-reduced-motion:reduce){
-  .hero-address{opacity:1;transform:none}
-  .hero-address.reveal{animation:none}
-  .hero-address a::after{transition:none}
-}
-
-/* mobile logo guard (prevent overlap) */
-@media (max-width:640px){
-  .site-logo,.header-logo,.nav .logo,.logo{display:none!important}
-}
-
-/* image CLS guard (if using #site-hero) */
-#site-hero{display:block}
-#site-hero img{width:100%;height:auto;display:block;aspect-ratio:1280/426}
-
-/* ===== Address pill entrance (one-time) ===== */
+/* Entrance animation */
 .hero-address{opacity:0;transform:translateY(12px)}
-.hero-address.reveal{animation:fadeUp .6s ease-out .15s both}
+.hero-address.reveal{animation:fadeUp .75s cubic-bezier(.22,.8,.2,1) .1s both}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.hero-address{animation:none}}
 
-/* Pill look + arrow nudge on hover/focus */
+.hero-address{margin-top:.5rem}
+.hero-sub{margin-top:.35rem}
+.hero-titles{margin-top:-4.75vw}
+@media (max-width:768px){.hero-titles{margin-top:-14vw}}
+
+/* Pill look + arrow nudge */
 .hero-address a{
   --pad:.55rem .9rem;
   display:inline-flex;align-items:center;gap:.5rem;
-  padding:var(--pad);border-radius:999px;
-  background:rgba(0,0,0,.18);color:#ffd166;text-decoration:none;
+  padding:var(--pad);
+  border-radius:999px;
+  background:rgba(0,0,0,.18);
+  color:#ffd166;text-decoration:none;
   box-shadow:0 0.35rem 1.4rem rgba(0,0,0,.25) inset, 0 .2rem .6rem rgba(0,0,0,.25);
   backdrop-filter:saturate(120%) blur(2px);
   transform:translateZ(0);
 }
 .hero-address a::after{content:"→";font-weight:700;opacity:.85;transform:translateX(0);transition:transform .25s ease,opacity .25s ease}
 .hero-address a:hover::after,.hero-address a:focus-visible::after{transform:translateX(4px);opacity:1}
-@media (prefers-reduced-motion:reduce){.hero-address{animation:none}.hero-address a::after{transition:none}}
 
-/* Tighten hero spacing a bit more (desktop + mobile) */
-.hero-titles{margin-top:-4.75vw}
-@media (max-width:768px){.hero-titles{margin-top:-14vw}}
-.hero-sub{margin-top:.35rem}
-.hero-address{margin-top:.5rem}
-
-/* Mobile logo overlap guard (match your header/logo classes) */
-@media (max-width:640px){
-  .site-logo,.header-logo,.nav .logo,.logo,.logo-star{display:none!important}
-}
-/* If you prefer to *shrink* instead of hide, comment the line above and use:
-@media (max-width:640px){ .site-logo,.header-logo,.nav .logo,.logo,.logo-star{max-height:30px;z-index:0} }
-*/
-
-/* Make the entrance a bit more noticeable */
-.hero-address.reveal{animation:fadeUp .75s cubic-bezier(.22,.8,.2,1) .1s both}
-
-/* Hide the brand block entirely on small screens to prevent overlap */
+/* Prevent logo overlapping Home button on phones */
 @media (max-width:640px){
   header .brand, header .logo, header .site-logo, .header-logo, .nav .logo,
-  header [class*="logo"], header a[aria-label*="Star Auto"] {
-    display:none !important;
-  }
+  header [class*="logo"], header a[aria-label*="Star Auto"] { display:none !important; }
 }
+
+/* Guard for image CLS if you use #site-hero pic */
+#site-hero{display:block}
+#site-hero img{width:100%;height:auto;display:block;aspect-ratio:1280/426}
