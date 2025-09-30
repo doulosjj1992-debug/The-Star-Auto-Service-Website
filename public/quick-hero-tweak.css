@@ -1,49 +1,79 @@
-/* ===== Hero positioning ===== */
-:root{
-  /* Tweak these two values to move titles up/down */
-  --hero-nudge-desktop: -6vw;   /* was ~ -3.5vw */
-  --hero-nudge-mobile:  -18vw;  /* moved further up on phones */
-}
+/* --- hero placement tweaks --- */
 .hero-shell,.hero,.hero-banner{position:relative}
-.hero-titles{margin-top:var(--hero-nudge-desktop)}
-@media (max-width:768px){
-  .hero-titles{margin-top:var(--hero-nudge-mobile)}
-}
+.hero-titles{margin-top:-4.25vw}
+@media (max-width:768px){ .hero-titles{margin-top:-12vw} }
+.hero-sub{margin-top:.55rem}
 
-/* Subheader spacing */
-.hero-sub{margin-top:0.6rem}
-
-/* ===== Address line styling & animation ===== */
+/* --- address pill: entrance + hover/focus --- */
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:none}}
+.hero-address{opacity:0;transform:translateY(12px)}   /* start hidden */
+.hero-address.reveal{animation:fadeUp .6s ease-out .15s both}
 
-.hero-address{
-  margin-top:.75rem;
-  font-size:clamp(14px,2.7vw,18px);
-  color:#e9ecf1;
-  animation:fadeUp .6s ease-out .15s both;
-}
 .hero-address a{
-  color:#ffd166;               /* brand yellow */
-  text-decoration:none;
-  position:relative;
-  text-underline-offset:2px;
+  --pad:.60rem .95rem;
+  display:inline-flex; align-items:center; gap:.5rem;
+  padding:var(--pad);
+  border-radius:999px;
+  background:rgba(0,0,0,.18);
+  color:#ffd166; text-decoration:none;
+  box-shadow:0 0.35rem 1.4rem rgba(0,0,0,.25) inset, 0 .2rem .6rem rgba(0,0,0,.25);
+  backdrop-filter:saturate(120%) blur(2px);
+  transform:translateZ(0);
 }
 .hero-address a::after{
-  content:"";
-  position:absolute;
-  left:0; right:auto; bottom:-2px;
-  height:2px; width:0;
-  background: currentColor;
-  transition: width .35s ease;
+  content:"→"; font-weight:700; opacity:.85;
+  transform:translateX(0);
+  transition:transform .25s ease, opacity .25s ease;
 }
-.hero-address a:hover::after,
-.hero-address a:focus-visible::after{ width:100% }
+.hero-address a:hover::after,.hero-address a:focus-visible::after{
+  transform:translateX(4px); opacity:1;
+}
 
-/* ===== Prevent hero image CLS (if #site-hero <picture> exists) ===== */
+/* motion-safe */
+@media (prefers-reduced-motion:reduce){
+  .hero-address{opacity:1;transform:none}
+  .hero-address.reveal{animation:none}
+  .hero-address a::after{transition:none}
+}
+
+/* mobile logo guard (prevent overlap) */
+@media (max-width:640px){
+  .site-logo,.header-logo,.nav .logo,.logo{display:none!important}
+}
+
+/* image CLS guard (if using #site-hero) */
 #site-hero{display:block}
 #site-hero img{width:100%;height:auto;display:block;aspect-ratio:1280/426}
 
-/* Optional: hold header height on mobile to avoid bumps */
-@media (max-width:640px){
-  header.site-header{min-height:56px}
+/* ===== Address pill entrance (one-time) ===== */
+.hero-address{opacity:0;transform:translateY(12px)}
+.hero-address.reveal{animation:fadeUp .6s ease-out .15s both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:none}}
+
+/* Pill look + arrow nudge on hover/focus */
+.hero-address a{
+  --pad:.55rem .9rem;
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:var(--pad);border-radius:999px;
+  background:rgba(0,0,0,.18);color:#ffd166;text-decoration:none;
+  box-shadow:0 0.35rem 1.4rem rgba(0,0,0,.25) inset, 0 .2rem .6rem rgba(0,0,0,.25);
+  backdrop-filter:saturate(120%) blur(2px);
+  transform:translateZ(0);
 }
+.hero-address a::after{content:"→";font-weight:700;opacity:.85;transform:translateX(0);transition:transform .25s ease,opacity .25s ease}
+.hero-address a:hover::after,.hero-address a:focus-visible::after{transform:translateX(4px);opacity:1}
+@media (prefers-reduced-motion:reduce){.hero-address{animation:none}.hero-address a::after{transition:none}}
+
+/* Tighten hero spacing a bit more (desktop + mobile) */
+.hero-titles{margin-top:-4.75vw}
+@media (max-width:768px){.hero-titles{margin-top:-14vw}}
+.hero-sub{margin-top:.35rem}
+.hero-address{margin-top:.5rem}
+
+/* Mobile logo overlap guard (match your header/logo classes) */
+@media (max-width:640px){
+  .site-logo,.header-logo,.nav .logo,.logo,.logo-star{display:none!important}
+}
+/* If you prefer to *shrink* instead of hide, comment the line above and use:
+@media (max-width:640px){ .site-logo,.header-logo,.nav .logo,.logo,.logo-star{max-height:30px;z-index:0} }
+*/
