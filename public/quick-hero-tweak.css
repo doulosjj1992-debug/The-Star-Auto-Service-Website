@@ -1,33 +1,33 @@
-.hero-shell,.hero,.hero-banner{position:relative}
-.hero-titles{margin-top:-3.5vw}
-@media (max-width:768px){ .hero-titles{margin-top:-8vw} }
-.hero-sub{margin-top:0.6rem}
+/* Subtle entrance for the address pill */
+.hero-address{opacity:0;transform:translateY(12px)}
+.hero-address.reveal{animation:fadeUp .6s ease-out .15s both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:none}}
 
-/* Address line */
-.hero-address{margin-top:.75rem;font-size:clamp(14px,2.7vw,18px);color:#e9ecf1}
-.hero-address a{color:#ffd166;text-underline-offset:2px}
+/* Pill look + arrow nudge on hover/focus */
+.hero-address a{
+  --pad:.55rem .9rem;
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:var(--pad);border-radius:999px;
+  background:rgba(0,0,0,.18);color:#ffd166;text-decoration:none;
+  box-shadow:0 0.35rem 1.4rem rgba(0,0,0,.25) inset, 0 .2rem .6rem rgba(0,0,0,.25);
+  backdrop-filter:saturate(120%) blur(2px);
+  transform:translateZ(0);
+}
+.hero-address a::after{content:"→";font-weight:700;opacity:.85;transform:translateX(0);transition:transform .25s ease,opacity .25s ease}
+.hero-address a:hover::after,.hero-address a:focus-visible::after{transform:translateX(4px);opacity:1}
+@media (prefers-reduced-motion:reduce){.hero-address{animation:none}.hero-address a::after{transition:none}}
 
-/* Optional: make whole map clickable if you wrap it in .map-wrap */
-.map-wrap{position:relative}
-.map-opener{position:absolute;inset:0;display:block;z-index:3;background:transparent}
+/* Slightly nudge titles upward (adjust if needed) */
+.hero-titles{margin-top:-4.5vw}
+@media (max-width:768px){.hero-titles{margin-top:-12vw}}
+.hero-sub{margin-top:.4rem}
+.hero-address{margin-top:.55rem}
 
-/* Guard against CLS if using #site-hero picture */
+/* Mobile logo overlap guard (shrink so it doesn’t collide) */
+@media (max-width:640px){
+  .site-logo,.header-logo,.nav .logo,.logo,.logo-star{max-height:30px;z-index:0}
+}
+
+/* Prevent hero image CLS if using #site-hero picture */
 #site-hero{display:block}
 #site-hero img{width:100%;height:auto;display:block;aspect-ratio:1280/426}
-
-/* --- Mobile logo guard (keeps it small & out of the nav’s way) --- */
-@media (max-width: 640px){
-  header img,
-  header .logo,
-  .logo-star,
-  .site-logo,
-  .header-logo,
-  .nav .logo{
-    max-height: 30px;   /* <— main fix */
-    width: auto;
-    object-fit: contain;
-  }
-
-  /* Reserve header height so nothing overlaps while fonts/images load */
-  header, .site-header { min-height: 56px }
-}
