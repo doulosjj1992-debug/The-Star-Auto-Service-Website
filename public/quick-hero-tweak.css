@@ -77,3 +77,6 @@
 /* If you prefer to *shrink* instead of hide, comment the line above and use:
 @media (max-width:640px){ .site-logo,.header-logo,.nav .logo,.logo,.logo-star{max-height:30px;z-index:0} }
 */
+
+/* Make the entrance a bit more noticeable */
+.hero-address.reveal{animation:fadeUp .75s cubic-bezier(.22,.8,.2,1) .1s both}
