@@ -1,33 +1,33 @@
-/* One-time entrance on load (match hero curve) */
-.hero-address,
-.hero-address a{
-  opacity:0; transform:translateY(12px);
-  animation:fadeUp .65s cubic-bezier(.22,.8,.2,1) .12s both;
-}
-@keyframes fadeUp{from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:none}}
+.hero-shell,.hero,.hero-banner{position:relative}
+.hero-titles{margin-top:-3.5vw}
+@media (max-width:768px){ .hero-titles{margin-top:-8vw} }
+.hero-sub{margin-top:0.6rem}
 
-.hero-address a{
-  --pad:.55rem .9rem;
-  display:inline-flex; align-items:center; gap:.5rem;
-  padding:var(--pad); border-radius:999px;
-  background:rgba(0,0,0,.18); color:#ffd166; text-decoration:none;
-  box-shadow:0 .35rem 1.4rem rgba(0,0,0,.25) inset, 0 .2rem .6rem rgba(0,0,0,.25);
-  backdrop-filter:saturate(120%) blur(2px);
-  transform:translateZ(0);
-}
-.hero-address a::after{
-  content:"\2192"; font-weight:700; opacity:.85;
-  transform:translateX(0); transition:transform .25s ease, opacity .25s ease;
-}
-.hero-address a:hover::after, .hero-address a:focus-visible::after{
-  transform:translateX(4px); opacity:1;
-}
+/* Address line */
+.hero-address{margin-top:.75rem;font-size:clamp(14px,2.7vw,18px);color:#e9ecf1}
+.hero-address a{color:#ffd166;text-underline-offset:2px}
 
-/* Tighten spacing so cars aren’t covered */
-.hero-sub{margin-top:.35rem}
-.hero-titles{margin-top:-4.75vw}
-@media (max-width:768px){ .hero-titles{margin-top:-14vw} }
+/* Optional: make whole map clickable if you wrap it in .map-wrap */
+.map-wrap{position:relative}
+.map-opener{position:absolute;inset:0;display:block;z-index:3;background:transparent}
 
-@media (prefers-reduced-motion:reduce){
-  .hero-address, .hero-address a{ animation:none; opacity:1; transform:none; }
+/* Guard against CLS if using #site-hero picture */
+#site-hero{display:block}
+#site-hero img{width:100%;height:auto;display:block;aspect-ratio:1280/426}
+
+/* --- Mobile logo guard (keeps it small & out of the nav’s way) --- */
+@media (max-width: 640px){
+  header img,
+  header .logo,
+  .logo-star,
+  .site-logo,
+  .header-logo,
+  .nav .logo{
+    max-height: 30px;   /* <— main fix */
+    width: auto;
+    object-fit: contain;
+  }
+
+  /* Reserve header height so nothing overlaps while fonts/images load */
+  header, .site-header { min-height: 56px }
 }
