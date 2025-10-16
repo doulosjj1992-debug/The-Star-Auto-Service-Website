@@ -1,42 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HYYPRL4MJ5"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-HYYPRL4MJ5');
-</script>
-
-
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "AutoRepair",
-  "@id": "https://thestarautoservice.com/#business",
-  "name": "The Star Auto Service",
-  "url": "https://thestarautoservice.com/",
-  "image": "https://thestarautoservice.com/assets/mission-banner-1280.jpg",
-  "telephone": "+1-972-231-2886",
-  "priceRange": "$$",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "900 E Belt Line Rd",
-    "addressLocality": "Richardson",
-    "addressRegion": "TX",
-    "postalCode": "75081",
-    "addressCountry": "US"
-  },
-  "geo": { "@type": "GeoCoordinates", "latitude": 32.9478494, "longitude": -96.7127265 },
-  "sameAs": [
-    "https://www.google.com/maps/search/?api=1&query=The%20Star%20Auto%20Service&query_place_id=ChIJpwtSxgYfTIYRsxQnZ9UEELs"
-  ],
-  "hasMap": "https://www.google.com/maps/search/?api=1&query=The%20Star%20Auto%20Service&query_place_id=ChIJpwtSxgYfTIYRsxQnZ9UEELs"
-}
-</script>
-
   <style>.skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;} .skip-link:focus{position:static;width:auto;height:auto;}</style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -2249,11 +2213,6 @@ a, button { min-height: 44px; min-width: 44px; }
         <section class="location">
             <div class="location-container">
                 <div class="location-info">
-                    <section id="gbp-actions" style="max-width:1200px;margin:24px auto;display:flex;gap:12px;flex-wrap:wrap">
-          <a id="cta-directions" class="btn" href="https://www.google.com/maps/dir/?api=1&destination=900+E+Belt+Line+Rd,+Richardson,+TX+75081" target="_blank" rel="noopener">Get Directions</a>
-          <a id="cta-review" class="btn" href="https://search.google.com/local/writereview?placeid=ChIJpwtSxgYfTIYRsxQnZ9UEELs" target="_blank" rel="noopener">Write a Google Review</a>
-          <a id="cta-view-reviews" class="btn" href="https://www.google.com/maps/place/?q=place_id:ChIJpwtSxgYfTIYRsxQnZ9UEELs" target="_blank" rel="noopener">See Google Reviews</a>
-        </section>
                     <h2>Visit Us Today</h2>
                     <div class="address-block">
                         <h3 style="color: var(--primary-blue); margin-bottom: 0.5rem; font-size: 1.5rem;">📍 Address</h3>
@@ -2447,7 +2406,7 @@ a, button { min-height: 44px; min-width: 44px; }
                 <a href="tel:9722312886">Call Us</a>
             </div>
             <div class="copyright">
-                <p>© 2025 The Star Auto Service. All rights reserved.</p>
+                <p>© 2024 The Star Auto Service. All rights reserved.</p>
                 <p>900 E Belt Line Rd, Richardson, TX 75081 | (972) 231-2886</p>
                 <p>Licensed & Insured | ASE Certified Technicians</p>
             </div>
@@ -2751,7 +2710,7 @@ if (window.matchMedia('(min-width: 768px)').matches) {
   requestAnimationFrame(updateParallax);
 })();
 </script>
-<script src="/gbp/gbp-events.js"></script>
+
 </body>
 </html>
   <script type="application/ld+json">
