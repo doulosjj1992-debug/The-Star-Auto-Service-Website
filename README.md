@@ -1,36 +1,106 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# The Star Auto Service Website
+
+A modern, responsive website for The Star Auto Service - an ASE-certified auto repair shop in Richardson, TX.
+
+## Features
+
+- 🚀 **Next.js 15** with App Router
+- 🎨 **Tailwind CSS 4** for styling
+- ♿ **Accessible** with ARIA labels and semantic HTML
+- 📱 **Fully Responsive** design
+- ⚡ **Performance Optimized** with dynamic imports
+- 🔄 **Auto Loops Component** for showcasing services
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 20+ recommended
+- npm or yarn package manager
+
+### Installation
 
 ```bash
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Build for production
+npm run build
+
+# Start production server
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to see the website.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/
+│   ├── layout.tsx       # Root layout with metadata
+│   ├── page.tsx         # Homepage
+│   └── globals.css      # Global styles
+└── components/
+    └── AutoLoops.tsx    # Scrolling showcase component
+```
 
-## Learn More
+## Components
 
-To learn more about Next.js, take a look at the following resources:
+### AutoLoops
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+A dynamic scrolling component that showcases services and features.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**Usage:**
+```tsx
+import AutoLoops from '@/components/AutoLoops';
 
-## Deploy on Vercel
+<AutoLoops 
+  items={['Service 1', 'Service 2']}
+  speed={30}
+  direction="left"
+/>
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Props:**
+- `items`: Array of strings to display (default: predefined services)
+- `speed`: Animation speed in pixels per second (default: 30)
+- `direction`: Scroll direction - 'left' or 'right' (default: 'left')
+- `className`: Additional CSS classes
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## SEO & Metadata
+
+The website includes comprehensive SEO optimization:
+- Meta descriptions and keywords
+- Open Graph tags for social sharing
+- Twitter Card metadata
+- Structured data for local business
+
+## Accessibility
+
+- Semantic HTML5 elements
+- ARIA labels where needed
+- Keyboard navigation support
+- Respects `prefers-reduced-motion`
+- High contrast ratios
+
+## Performance
+
+- Dynamic component imports
+- Optimized images with Next.js Image
+- Minimal JavaScript bundle
+- Static page generation
+
+## Contact Information
+
+**The Star Auto Service**
+- Address: 900 E Belt Line Rd, Richardson, TX 75081
+- Phone: (972) 231-2886
+- Hours: Mon-Fri 8AM-6:30PM, Sat 8AM-4PM
+
+## License
+
+© 2024 The Star Auto Service. All rights reserved.
