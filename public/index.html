@@ -461,14 +461,21 @@
         .scroll-bar {
             position: relative;
             height: 50px;
-            background: linear-gradient(135deg, rgba(30, 58, 138, 0.85) 0%, rgba(251, 191, 36, 0.85) 100%);
-            backdrop-filter: blur(10px);
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.9) 0%, rgba(251, 191, 36, 0.9) 100%);
             border-radius: 25px;
             overflow: hidden;
             box-shadow: 0 10px 40px rgba(251, 191, 36, 0.3),
                         0 5px 15px rgba(0, 0, 0, 0.4),
                         inset 0 1px 0 rgba(255, 255, 255, 0.2);
             border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+
+        /* Add backdrop-filter only for browsers that support it */
+        @supports (backdrop-filter: blur(10px)) {
+            .scroll-bar {
+                background: linear-gradient(135deg, rgba(30, 58, 138, 0.85) 0%, rgba(251, 191, 36, 0.85) 100%);
+                backdrop-filter: blur(10px);
+            }
         }
 
         .scroll-bar::before {
@@ -2665,6 +2672,25 @@ document.addEventListener('DOMContentLoaded', () => {
     el.classList.remove('in'); // ensure hidden state on load
     observer.observe(el);
   });
+
+  // Performance optimization: pause scrolling bar animations when not in viewport
+  const scrollingBarsObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const scrollContent = entry.target.querySelectorAll('.scroll-content');
+      scrollContent.forEach((content) => {
+        if (entry.isIntersecting) {
+          content.style.animationPlayState = 'running';
+        } else {
+          content.style.animationPlayState = 'paused';
+        }
+      });
+    });
+  }, { threshold: 0 });
+
+  const scrollingBars = document.querySelector('.luxe-scrolling-bars');
+  if (scrollingBars) {
+    scrollingBarsObserver.observe(scrollingBars);
+  }
 });
 
 
