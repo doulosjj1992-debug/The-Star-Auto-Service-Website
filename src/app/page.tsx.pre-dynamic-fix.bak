@@ -1,4 +1,6 @@
-import AutoLoops from "../components/AutoLoops";
+import dynamic from "next/dynamic";
+const AutoLoops = dynamic(() => import("../components/AutoLoops"), { ssr: false });
+
 import Image from "next/image";
 
 export default function Home() {
