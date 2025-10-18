@@ -3,19 +3,12 @@
  * 
  * Main landing page for The Star Auto Service website.
  * Includes the AutoLoops component to display scrolling auto brands and services.
- * The AutoLoops component is dynamically imported with SSR disabled for optimal
- * client-side animation performance.
  */
 
 'use client';
 
 import Image from "next/image";
-import dynamic from "next/dynamic";
-
-// Dynamically import AutoLoops with SSR disabled for client-side animations
-const AutoLoops = dynamic(() => import("@/components/AutoLoops"), {
-  ssr: false,
-});
+import AutoLoops from "@/components/AutoLoops";
 
 export default function Home() {
   return (

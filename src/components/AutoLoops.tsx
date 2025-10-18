@@ -128,33 +128,6 @@ const AutoLoops: React.FC = () => {
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes scroll {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
-        }
-
-        .animate-scroll-brands {
-          animation: scroll 40s linear infinite;
-        }
-
-        .animate-scroll-brands:hover {
-          animation-play-state: paused;
-        }
-
-        .animate-scroll-services {
-          animation: scroll 35s linear infinite;
-        }
-
-        .animate-scroll-services:hover {
-          animation-play-state: paused;
-        }
-      `}</style>
     </div>
   );
 };
