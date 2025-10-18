@@ -1,3 +1,4 @@
+import AutoLoops from "../components/AutoLoops";
 import Image from "next/image";
 
 export default function Home() {
