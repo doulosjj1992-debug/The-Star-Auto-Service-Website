@@ -1,9 +1,50 @@
+/**
+ * Home Page
+ * 
+ * Main landing page for The Star Auto Service website.
+ * Includes the AutoLoops component to display scrolling auto brands and services.
+ * The AutoLoops component is dynamically imported with SSR disabled for optimal
+ * client-side animation performance.
+ */
+
+'use client';
+
 import Image from "next/image";
+import dynamic from "next/dynamic";
+
+// Dynamically import AutoLoops with SSR disabled for client-side animations
+const AutoLoops = dynamic(() => import("@/components/AutoLoops"), {
+  ssr: false,
+});
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
+    <div className="font-sans min-h-screen">
+      {/* Simple Navbar */}
+      <nav className="bg-white dark:bg-gray-900 shadow-md p-4">
+        <div className="container mx-auto flex items-center justify-between">
+          <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
+            The Star Auto Service
+          </h1>
+          <div className="flex gap-6">
+            <a href="#home" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
+              Home
+            </a>
+            <a href="#services" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
+              Services
+            </a>
+            <a href="#about" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
+              About
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      {/* AutoLoops Component - Scrolling brands and services */}
+      <AutoLoops />
+
+      {/* Main Content */}
+      <main className="flex flex-col gap-[32px] p-8 pb-20 sm:p-20 items-center sm:items-start max-w-6xl mx-auto">
         <Image
           className="dark:invert"
           src="/next.svg"
@@ -51,8 +92,11 @@ export default function Home() {
           </a>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
+
+      {/* Footer */}
+      <footer className="bg-gray-100 dark:bg-gray-900 py-8 mt-16">
+        <div className="max-w-6xl mx-auto px-8 flex gap-[24px] flex-wrap items-center justify-center">
+          <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
           href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
           target="_blank"
@@ -97,6 +141,7 @@ export default function Home() {
           />
           Go to nextjs.org →
         </a>
+        </div>
       </footer>
     </div>
   );
