@@ -123,7 +123,9 @@ export default function Home() {
                 key={index}
                 className="bg-white/95 text-gray-800 p-6 md:p-8 rounded-2xl shadow-xl"
               >
-                <div className="text-yellow-400 text-xl md:text-2xl mb-4" aria-label="5 star rating">★★★★★</div>
+                <div className="text-yellow-400 text-xl md:text-2xl mb-4" role="img" aria-label="Rated 5 out of 5 stars">
+                  ★★★★★
+                </div>
                 <p className="italic mb-4 text-sm md:text-base text-gray-700">&ldquo;{review.text}&rdquo;</p>
                 <p className="font-bold text-blue-900">- {review.author}</p>
               </article>
@@ -139,13 +141,13 @@ export default function Home() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
             <div className="space-y-6">
-              <address className="bg-white p-6 rounded-2xl shadow-lg not-italic">
+              <div className="bg-white p-6 rounded-2xl shadow-lg">
                 <h3 className="text-xl md:text-2xl font-bold text-blue-900 mb-3">📍 Address</h3>
-                <p className="text-base md:text-lg">
+                <address className="not-italic text-base md:text-lg">
                   900 E Belt Line Rd<br />
                   Richardson, TX 75081
-                </p>
-              </address>
+                </address>
+              </div>
               
               <div className="bg-white p-6 rounded-2xl shadow-lg">
                 <h3 className="text-xl md:text-2xl font-bold text-blue-900 mb-3">🕐 Hours</h3>

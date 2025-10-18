@@ -32,12 +32,15 @@ export default function AutoLoops({
     const scrollElement = scrollRef.current;
     if (!scrollElement) return;
 
-    // Calculate animation duration based on speed
-    const contentWidth = scrollElement.scrollWidth / 2; // Divided by 2 because we duplicate content
-    const duration = contentWidth / speed;
-
-    scrollElement.style.setProperty('--animation-duration', `${duration}s`);
-    scrollElement.style.setProperty('--animation-direction', direction === 'left' ? 'normal' : 'reverse');
+    // Use requestAnimationFrame to ensure DOM is ready
+    requestAnimationFrame(() => {
+      const contentWidth = scrollElement.scrollWidth / 2; // Divided by 2 because we duplicate content
+      if (contentWidth > 0) {
+        const duration = contentWidth / speed;
+        scrollElement.style.setProperty('--animation-duration', `${duration}s`);
+        scrollElement.style.setProperty('--animation-direction', direction === 'left' ? 'normal' : 'reverse');
+      }
+    });
   }, [speed, direction]);
 
   return (
@@ -53,7 +56,7 @@ export default function AutoLoops({
         {/* Render items twice for seamless loop */}
         {[...items, ...items].map((item, index) => (
           <div
-            key={index}
+            key={`${item}-${index}`}
             className="inline-flex items-center gap-2 text-white font-bold text-base md:text-lg px-4 md:px-6 py-2 mx-2 md:mx-4 rounded-full bg-black/20 backdrop-blur-sm hover:bg-black/30 transition-colors"
           >
             <span>{item}</span>
