@@ -444,6 +444,124 @@
             text-shadow: 0 0 30px rgba(251, 191, 36, 0.8);
         }
 
+        /* Premium Luxe Scrolling Bars */
+        .luxe-scrolling-bars {
+            position: absolute;
+            top: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1200px;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .scroll-bar {
+            position: relative;
+            height: 50px;
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.9) 0%, rgba(251, 191, 36, 0.9) 100%);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(251, 191, 36, 0.3),
+                        0 5px 15px rgba(0, 0, 0, 0.4),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+
+        /* Add backdrop-filter only for browsers that support it */
+        @supports (backdrop-filter: blur(10px)) {
+            .scroll-bar {
+                background: linear-gradient(135deg, rgba(30, 58, 138, 0.85) 0%, rgba(251, 191, 36, 0.85) 100%);
+                backdrop-filter: blur(10px);
+            }
+        }
+
+        .scroll-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255, 255, 255, 0.6) 50%, 
+                transparent 100%);
+        }
+
+        .scroll-content {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            animation: scrollInfinite 30s linear infinite;
+            white-space: nowrap;
+        }
+
+        .scroll-bar:nth-child(2) .scroll-content {
+            animation-duration: 35s;
+            animation-direction: reverse;
+        }
+
+        @keyframes scrollInfinite {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        .scroll-item {
+            display: inline-flex;
+            align-items: center;
+            padding: 0 3rem;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            text-transform: uppercase;
+        }
+
+        .scroll-item::before {
+            content: '★';
+            margin-right: 1rem;
+            font-size: 1.3rem;
+            color: var(--accent-yellow);
+            animation: starTwinkle 2s ease-in-out infinite;
+            text-shadow: 0 0 20px rgba(251, 191, 36, 0.8);
+        }
+
+        @keyframes starTwinkle {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.6;
+                transform: scale(1.2);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .luxe-scrolling-bars {
+                width: 95%;
+                top: 12%;
+                gap: 0.75rem;
+            }
+
+            .scroll-bar {
+                height: 40px;
+            }
+
+            .scroll-item {
+                font-size: 0.9rem;
+                padding: 0 2rem;
+            }
+        }
+
         /* STUNNING Hero Section with Racing Cars */
         .hero {
             position: relative;
@@ -2125,6 +2243,46 @@ a, button { min-height: 44px; min-width: 44px; }
             
             <div class="hero-overlay"></div>
             
+            <!-- Premium Luxe Scrolling Bars -->
+            <div class="luxe-scrolling-bars">
+                <div class="scroll-bar">
+                    <div class="scroll-content">
+                        <span class="scroll-item">ASE Certified Technicians</span>
+                        <span class="scroll-item">Expert Auto Repair</span>
+                        <span class="scroll-item">Bilingual Service</span>
+                        <span class="scroll-item">Family Owned & Operated</span>
+                        <span class="scroll-item">Richardson's Trusted Choice</span>
+                        <span class="scroll-item">Quality Parts & Service</span>
+                        <!-- Duplicate for seamless loop -->
+                        <span class="scroll-item">ASE Certified Technicians</span>
+                        <span class="scroll-item">Expert Auto Repair</span>
+                        <span class="scroll-item">Bilingual Service</span>
+                        <span class="scroll-item">Family Owned & Operated</span>
+                        <span class="scroll-item">Richardson's Trusted Choice</span>
+                        <span class="scroll-item">Quality Parts & Service</span>
+                    </div>
+                </div>
+                <div class="scroll-bar">
+                    <div class="scroll-content">
+                        <span class="scroll-item">Battery Services</span>
+                        <span class="scroll-item">Oil Changes</span>
+                        <span class="scroll-item">Electrical Diagnostics</span>
+                        <span class="scroll-item">Engine Replacement</span>
+                        <span class="scroll-item">Tire Rotation</span>
+                        <span class="scroll-item">Heating & Cooling</span>
+                        <span class="scroll-item">Brake Service</span>
+                        <!-- Duplicate for seamless loop -->
+                        <span class="scroll-item">Battery Services</span>
+                        <span class="scroll-item">Oil Changes</span>
+                        <span class="scroll-item">Electrical Diagnostics</span>
+                        <span class="scroll-item">Engine Replacement</span>
+                        <span class="scroll-item">Tire Rotation</span>
+                        <span class="scroll-item">Heating & Cooling</span>
+                        <span class="scroll-item">Brake Service</span>
+                    </div>
+                </div>
+            </div>
+            
             <div class="hero-content">
                 <h1 class="hero-title">The Star Auto Service</h1>
                 <p class="hero-subtitle">Your Neighborhood Mechanic Shop</p>
@@ -2514,6 +2672,25 @@ document.addEventListener('DOMContentLoaded', () => {
     el.classList.remove('in'); // ensure hidden state on load
     observer.observe(el);
   });
+
+  // Performance optimization: pause scrolling bar animations when not in viewport
+  const scrollingBarsObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const scrollContent = entry.target.querySelectorAll('.scroll-content');
+      scrollContent.forEach((content) => {
+        if (entry.isIntersecting) {
+          content.style.animationPlayState = 'running';
+        } else {
+          content.style.animationPlayState = 'paused';
+        }
+      });
+    });
+  }, { threshold: 0.1 });
+
+  const scrollingBars = document.querySelector('.luxe-scrolling-bars');
+  if (scrollingBars) {
+    scrollingBarsObserver.observe(scrollingBars);
+  }
 });
 
 
