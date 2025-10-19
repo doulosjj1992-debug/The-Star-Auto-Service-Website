@@ -1,4 +1,0 @@
-/* Hide the glowing logo on small screens */
-@media (max-width: 640px) {
-  .logo, img.logo, #logo { display: none !important; }
-}
