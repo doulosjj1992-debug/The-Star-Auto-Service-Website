@@ -114,8 +114,7 @@ export default function Home() {
     </div>
 
     {/* Contact Modal */}
-    {isModalOpen && (
-    <div className="contact-modal" id="contactModal">
+    <div className={`contact-modal ${isModalOpen ? 'show' : ''}`} id="contactModal">
         <span className="close-modal" onClick={closeContactModal}>×</span>
         <form className="contact-form" onSubmit={sendContact}>
             <h2>Get In Touch</h2>
@@ -126,7 +125,6 @@ export default function Home() {
             <button type="submit">Send Message</button>
         </form>
     </div>
-    )}
 
     {/* Home Page */}
     <div id="home" className={`page ${activePage === 'home' ? 'active' : ''}`}>
@@ -264,7 +262,7 @@ export default function Home() {
     </div>
 
     {/* Services Page */}
-    <div id="services" className="page">
+    <div id="services" className={`page ${activePage === 'services' ? 'active' : ''}`}>
         <section className="services-section">
             <div className="services-container">
                 <h1 className="services-title">Our Services</h1>
@@ -369,7 +367,7 @@ export default function Home() {
     </div>
 
     {/* About Page */}
-    <div id="about" className="page">
+    <div id="about" className={`page ${activePage === 'about' ? 'active' : ''}`}>
         <section className="about-section">
             <div className="services-container">
                 <div className="about-hero">
