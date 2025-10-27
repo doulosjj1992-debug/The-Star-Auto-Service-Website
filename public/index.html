@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="/quick-mobile-fix.css?v=1759187230">
     <link rel="preload" as="image" href="/assets/hero.jpg" imagesrcset="/assets/hero.jpg 1x" fetchpriority="high">
 
     <link rel="canonical" href="https://thestarautoservice.com/">
@@ -2049,6 +2048,10 @@ a, button { min-height: 44px; min-width: 44px; }
   .review-card { border-radius: 16px; }
 }
 
+/* Hide the glowing logo on small screens */
+@media (max-width: 640px) {
+  .logo, img.logo, #logo { display: none !important; }
+}
 
     </style>
 </head>
